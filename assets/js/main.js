@@ -6,72 +6,6 @@ const onScrollNav = () => {
 onScrollNav();
 window.addEventListener('scroll', onScrollNav, { passive: true });
 
-// Animated custom cursor (desktop only)
-(() => {
-  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!canHover) return;
-
-  const root = document.createElement('div');
-  root.className = 'site-cursor';
-  root.setAttribute('aria-hidden', 'true');
-  root.innerHTML = '<div class="site-cursor__ring"></div><div class="site-cursor__pointer"></div>';
-  document.body.appendChild(root);
-  document.body.classList.add('has-site-cursor');
-
-  const ring = root.querySelector('.site-cursor__ring');
-  const pointer = root.querySelector('.site-cursor__pointer');
-  const hoverSelector = 'a, button, [role="button"], summary, label[for], input, textarea, select, .site-nav__btn, .burger-btn';
-
-  let x = window.innerWidth / 2;
-  let y = window.innerHeight / 2;
-  let rx = x;
-  let ry = y;
-  let visible = false;
-
-  const setPointerTransform = () => {
-    const rotate = root.classList.contains('is-down') ? -4 : root.classList.contains('is-hover') ? -8 : 0;
-    const scale = root.classList.contains('is-down') ? 0.92 : root.classList.contains('is-hover') ? 1.14 : 1;
-    pointer.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg) scale(${scale})`;
-  };
-
-  const tick = () => {
-    rx += (x - rx) * 0.18;
-    ry += (y - ry) * 0.18;
-    ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-    setPointerTransform();
-    requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-
-  window.addEventListener(
-    'mousemove',
-    (e) => {
-      x = e.clientX;
-      y = e.clientY;
-      if (!visible) {
-        visible = true;
-        rx = x;
-        ry = y;
-        root.classList.add('is-visible');
-      }
-      const over = e.target.closest?.(hoverSelector);
-      root.classList.toggle('is-hover', Boolean(over));
-    },
-    { passive: true }
-  );
-
-  window.addEventListener('mousedown', () => root.classList.add('is-down'));
-  window.addEventListener('mouseup', () => root.classList.remove('is-down'));
-  document.addEventListener('mouseleave', () => {
-    visible = false;
-    root.classList.remove('is-visible', 'is-hover', 'is-down');
-  });
-  document.addEventListener('mouseenter', () => {
-    visible = true;
-    root.classList.add('is-visible');
-  });
-})();
-
 // Mobile nav
 const menuBtn = document.getElementById('menu-btn');
 const mobileNav = document.getElementById('mobile-nav');
@@ -227,11 +161,10 @@ if (eventsList) {
   eventsList.innerHTML = events
     .map(
       (event) => `
-    <li class="last:border-b last:border-line">
-      <div class="mx-auto max-w-site border-x border-[#EBF2F5] px-5 py-9 md:px-8 lg:px-9">
-        <div class="grid grid-cols-1 items-stretch bg-[#F8FBFC] md:grid-cols-2 lg:grid-cols-[minmax(0,243px)_minmax(0,336px)_minmax(0,335px)_minmax(0,1fr)] xl:grid-cols-[243px_336px_335px_minmax(0,1fr)] lg:p-7 rounded-[8px]">
-          <div class="flex flex-col justify-between border-line px-5 py-6 md:px-6 lg:border-r">
-            <p class="m-0 font-sans text-[28px] font-semibold leading-none tracking-normal text-navy">${escapeHtml(event.index)}</p>
+    <li class="pt-6 md:pt-8 lg:pt-9 last:pb-6 last:md:pb-8 last:lg:pb-9">
+      <div class="grid grid-cols-1 items-stretch rounded-[8px] bg-[#F8FBFC] md:grid-cols-2 lg:grid-cols-[minmax(0,243px)_minmax(0,336px)_minmax(0,335px)_minmax(0,1fr)] lg:p-7 xl:grid-cols-[243px_336px_335px_minmax(0,1fr)]">
+          <div class="flex flex-col gap-8 border-line px-5 py-5 md:gap-10 md:px-6 md:py-6 lg:justify-between lg:gap-0 lg:border-r">
+            <p class="m-0 font-sans text-[24px] font-semibold leading-none tracking-normal text-navy md:text-[28px]">${escapeHtml(event.index)}</p>
             <div>
               <div class="mb-4 h-px w-full bg-line"></div>
               <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-navy">${escapeHtml(event.day)}</p>
@@ -240,16 +173,16 @@ if (eventsList) {
             </div>
           </div>
 
-          <div class="flex flex-col justify-between gap-8 border-line px-5 py-6 md:px-6 lg:border-r">
+          <div class="flex flex-col justify-between gap-6 border-line px-5 py-5 md:gap-8 md:px-6 md:py-6 lg:border-r">
             <div>
-              <h3 class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">${escapeHtml(event.title)}</h3>
+              <h3 class="m-0 font-sans text-[18px] font-medium leading-7 tracking-normal text-navy md:text-[20px]">${escapeHtml(event.title)}</h3>
               <p class="m-0 mt-3 font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">${escapeHtml(event.description)}</p>
             </div>
             <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-navy">${escapeHtml(event.status)}</p>
           </div>
 
-          <div class="flex flex-col justify-between gap-8 border-line px-5 py-6 md:px-6 lg:border-r">
-            <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">Speaker</p>
+          <div class="flex flex-col justify-between gap-6 border-line px-5 py-5 md:gap-8 md:px-6 md:py-6 lg:border-r">
+            <p class="m-0 font-sans text-[18px] font-normal leading-[25.2px] tracking-normal text-navy">Speaker</p>
             <div class="flex items-center gap-3">
               <img
                 src="${escapeHtml(event.speakerImage)}"
@@ -260,7 +193,7 @@ if (eventsList) {
                 class="h-12 w-12 rounded-[8px] object-cover"
               />
               <div>
-                <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">${escapeHtml(event.speakerName)}</p>
+                <p class="m-0 font-sans text-[18px] font-medium leading-7 tracking-normal text-navy md:text-[20px]">${escapeHtml(event.speakerName)}</p>
                 <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">${escapeHtml(event.speakerRole)}</p>
               </div>
             </div>
@@ -277,7 +210,6 @@ if (eventsList) {
             />
           </div>
         </div>
-      </div>
     </li>`
     )
     .join('');

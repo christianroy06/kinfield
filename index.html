@@ -51,15 +51,11 @@
   <!-- ========== NAV ========== -->
   <nav id="site-nav" class="site-nav">
     <div class="site-nav__inner mx-auto grid max-w-site grid-cols-2 items-stretch md:grid-cols-3 md:px-8">
-      <!-- Left: burger (mobile/tablet) / links (desktop) -->
-      <div class="site-nav__col site-nav__col--links flex items-center self-stretch px-4 py-4 sm:px-5 sm:py-5">
-        <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" class="burger-btn inline-flex items-center justify-center rounded p-2 hover:bg-white/10 lg:hidden">
-          <span class="burger-btn__box" aria-hidden="true">
-            <span class="burger-btn__line"></span>
-            <span class="burger-btn__line"></span>
-            <span class="burger-btn__line"></span>
-          </span>
-        </button>
+      <!-- Left: Explore Programs (tablet) / nav links (desktop) -->
+      <div class="site-nav__col site-nav__col--links hidden items-center self-stretch px-4 py-4 md:flex sm:px-5 sm:py-5">
+        <a href="#programs" class="site-nav__btn font-medium tracking-wide transition hover:bg-white/25 lg:hidden">
+          Explore Programs
+        </a>
         <ul class="site-nav__list hidden items-center font-medium tracking-wide lg:flex">
           <li><a href="#" class="opacity-90 transition hover:opacity-100">Home</a></li>
           <li><a href="#about" class="opacity-90 transition hover:opacity-100">About</a></li>
@@ -67,17 +63,24 @@
         </ul>
       </div>
 
-      <!-- Center: logo -->
-      <a href="#" class="site-nav__col site-nav__col--logo flex items-center justify-center px-4 py-4 sm:px-6 sm:py-5" aria-label="Kinfield University">
+      <!-- Logo: left on mobile, center on tablet+ -->
+      <a href="#" class="site-nav__col site-nav__col--logo flex items-center justify-start px-4 py-4 md:justify-center sm:px-6 sm:py-5" aria-label="Kinfield University">
         <img src="assets/images/logo.svg" alt="Kinfield" width="120" height="32" class="h-7 w-auto sm:h-8 sm:w-[120px]" />
       </a>
 
-      <!-- Right: tablet + desktop only -->
-      <div class="site-nav__col site-nav__col--actions hidden items-center justify-end self-stretch px-4 py-4 md:flex sm:px-5 sm:py-5">
+      <!-- Right: burger (mobile/tablet) / Contact + Explore (desktop) -->
+      <div class="site-nav__col site-nav__col--actions flex items-center justify-end self-stretch px-4 py-4 sm:px-5 sm:py-5">
+        <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" class="burger-btn inline-flex items-center justify-center rounded p-2 hover:bg-white/10 lg:hidden">
+          <span class="burger-btn__box" aria-hidden="true">
+            <span class="burger-btn__line"></span>
+            <span class="burger-btn__line"></span>
+            <span class="burger-btn__line"></span>
+          </span>
+        </button>
         <a href="#contact" class="site-nav__contact hidden font-medium tracking-wide opacity-90 transition hover:opacity-100 lg:inline-block">
           Contact Us
         </a>
-        <a href="#programs" class="site-nav__btn font-medium tracking-wide transition hover:bg-white/25">
+        <a href="#programs" class="site-nav__btn hidden font-medium tracking-wide transition hover:bg-white/25 lg:inline-flex">
           Explore Programs
         </a>
       </div>
@@ -99,14 +102,14 @@
     style="background-image: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), url('assets/images/banner-image.png');"
   >
     <div class="w-full border-t border-[#FFFFFF29]">
-      <div class="mx-auto w-full max-w-site px-5 pb-12 pt-8 md:px-8">
-        <div class="grid items-start gap-8 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:items-center lg:justify-between lg:gap-10 xl:gap-16">
+      <div class="mx-auto w-full max-w-site px-5 pb-10 pt-8 md:px-8 md:pb-12 lg:pb-14">
+        <div class="grid items-start gap-8 md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:items-center lg:justify-between lg:gap-10 xl:gap-16">
           <div class="hero-copy box-border flex w-full min-w-0 items-center">
             <h1 class="m-0 font-sans text-[clamp(2.5rem,8vw,96px)] font-semibold leading-[1.1] tracking-normal xl:text-[96px] xl:leading-[105.6px]">
               Build Future at<br /> Kinfield University
             </h1>
           </div>
-          <div class="hero-copy-delay box-border flex w-full max-w-[460px] flex-col items-start justify-center gap-12 lg:max-w-none">
+          <div class="hero-copy-delay box-border flex w-full max-w-[460px] flex-col items-start justify-center gap-8 md:gap-10 lg:max-w-none lg:gap-12">
             <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-white/90">
               A modern campus for curious minds, hands-on learning, supportive mentors, and global-ready programs designed to help you thrive.
             </p>
@@ -120,16 +123,16 @@
   </header>
 
   <!-- ========== ABOUT ========== -->
-  <section id="about" class="bg-white pt-20 md:pt-24">
-    <div class="mx-auto max-w-site px-5 pb-14 md:px-8">
+  <section id="about" class="bg-white pt-16 md:pt-20 lg:pt-24">
+    <div class="mx-auto max-w-site px-5 pb-10 md:px-8 md:pb-12">
       <div class="reveal">
-        <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+        <p class="mb-4 flex items-center gap-2 text-[14px] text-navy md:mb-6">
           <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="4" height="4" fill="#01293A"/>
           </svg>
           About Kinfield
         </p>
-        <div class="grid items-start gap-10 md:grid-cols-2 md:gap-24">
+        <div class="grid items-start gap-8 md:grid-cols-2 md:gap-12 lg:gap-24">
           <h2 class="font-display w-full max-w-[600px] text-[28px] font-semibold leading-tight text-navy">
             A Modern University Experience Built for Real-World Impact
           </h2>
@@ -147,8 +150,8 @@
 
     <div class="w-full border-t border-line">
       <div class="reveal mx-auto grid max-w-site items-stretch md:px-8 lg:grid-cols-2 lg:gap-0">
-        <div class="border-[#EBF2F5] px-5 pb-0 md:px-0 lg:border-r lg:pb-24">
-          <div class="overflow-hidden pt-8 pb-0 md:py-8 md:pr-6 lg:py-14 lg:pr-14">
+        <div class="border-b border-[#EBF2F5] px-5 md:border-b-0 md:px-0 lg:border-r lg:pb-24">
+          <div class="overflow-hidden py-8 md:pr-6 lg:py-14 lg:pr-14">
             <img
               src="assets/images/about-image.png"
               alt="Students walking together on campus"
@@ -170,36 +173,36 @@
             </h2>
           </div>
 
-          <ul>
-            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+          <ul class="grid grid-cols-2 border-t border-line lg:grid-cols-1 lg:border-t-0">
+            <li class="flex flex-col gap-2 border-b border-r border-line px-5 py-6 md:px-6 md:py-7 lg:grid lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:gap-y-1 lg:border-r-0 lg:px-14 lg:py-5">
               <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">01</span>
               <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Student-First Support</p>
-              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Advisors and mentors help you stay on track and grow.</p>
+              <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Advisors and mentors help you stay on track and grow.</p>
             </li>
-            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+            <li class="flex flex-col gap-2 border-b border-line px-5 py-6 md:px-6 md:py-7 lg:grid lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:gap-y-1 lg:px-14 lg:py-5">
               <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">02</span>
               <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Academic Excellence</p>
-              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Clear standards, strong teaching, and consistent improvement across programs.</p>
+              <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Clear standards, strong teaching, and consistent improvement across programs.</p>
             </li>
-            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+            <li class="flex flex-col gap-2 border-b border-r border-line px-5 py-6 md:px-6 md:py-7 lg:grid lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:gap-y-1 lg:border-r-0 lg:px-14 lg:py-5">
               <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">03</span>
               <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Practical Learning</p>
-              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Projects, labs, and real cases that match today's industry needs.</p>
+              <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Projects, labs, and real cases that match today's industry needs.</p>
             </li>
-            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+            <li class="flex flex-col gap-2 border-b border-line px-5 py-6 md:px-6 md:py-7 lg:grid lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:gap-y-1 lg:px-14 lg:py-5">
               <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">04</span>
               <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Inclusive Community</p>
-              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">A welcoming campus where every voice is respected and valued.</p>
+              <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">A welcoming campus where every voice is respected and valued.</p>
             </li>
-            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+            <li class="flex flex-col gap-2 border-b border-r border-line px-5 py-6 md:px-6 md:py-7 lg:grid lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:gap-y-1 lg:border-r-0 lg:px-14 lg:py-5">
               <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">05</span>
               <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Innovation and Curiosity</p>
-              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">We encourage asking better questions and testing new ideas.</p>
+              <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">We encourage asking better questions and testing new ideas.</p>
             </li>
-            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+            <li class="flex flex-col gap-2 border-b border-line px-5 py-6 md:px-6 md:py-7 lg:grid lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:gap-y-1 lg:px-14 lg:py-5">
               <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">06</span>
               <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Impact-Driven Mindset</p>
-              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Learning that leads to positive change in society and the environment.</p>
+              <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Learning that leads to positive change in society and the environment.</p>
             </li>
           </ul>
         </div>
@@ -212,21 +215,21 @@
     <div class="w-full border-b border-[#FFFFFF14]">
       <div class="reveal mx-auto grid max-w-site items-stretch md:grid-cols-2 md:gap-0">
         <div class="border-[#FFFFFF14] md:border-r">
-          <div class="px-5 py-8 md:px-8 md:py-8 lg:p-12">
-            <p class="mb-4 flex items-center gap-2 text-[14px] text-white">
+          <div class="px-5 py-10 md:px-8 md:py-12 lg:p-12">
+            <p class="mb-4 flex items-center gap-2 text-[14px] text-white md:mb-6">
               <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect width="4" height="4" fill="#FFFFFF"/>
               </svg>
               Inside Campus
             </p>
-            <h2 class="font-display text-[28px] font-semibold leading-tight text-white md:text-4xl">
+            <h2 class="font-display text-[28px] font-semibold leading-tight text-white md:text-3xl lg:text-4xl">
               Step Inside Kinfield
             </h2>
           </div>
         </div>
         <div>
-          <div class="px-5 pb-8 pt-0 md:px-8 md:py-8 lg:p-12">
-            <p class="mb-4 hidden items-center gap-2 text-[14px] opacity-0 select-none md:flex" aria-hidden="true">
+          <div class="px-5 pb-10 pt-0 md:px-8 md:py-12 lg:p-12">
+            <p class="mb-4 hidden items-center gap-2 text-[14px] opacity-0 select-none md:mb-6 md:flex" aria-hidden="true">
               <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="4" height="4" fill="#FFFFFF"/>
               </svg>
@@ -276,17 +279,17 @@
   </section>
 
   <!-- ========== PROGRAMS ========== -->
-  <section id="programs" class="bg-mist py-20 md:py-24 bg-[#F8FBFC]">
+  <section id="programs" class="bg-[#F8FBFC] py-16 md:py-20 lg:py-24">
     <div class="mx-auto max-w-site px-5 md:px-8">
-        <p class="mb-6 flex items-center gap-2 text-[14px] text-navy justify-center">
+        <p class="mb-4 flex items-center justify-center gap-2 text-[14px] text-navy md:mb-6">
           <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="4" height="4" fill="#01293A"/>
           </svg>
           Programs
         </p>
-      <h2 class="reveal font-display text-center text-[28px] font-semibold text-navy md:text-4xl">Browse Programs</h2>
+      <h2 class="reveal font-display text-center text-[28px] font-semibold text-navy md:text-3xl lg:text-4xl">Browse Programs</h2>
 
-      <div class="reveal mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="reveal mt-10 grid gap-5 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
         <!-- Card 1 -->
         <article class="relative flex flex-col overflow-hidden rounded-[8px] bg-white p-6">
           <span class="badge-green absolute right-0 top-6 rounded-tl-[4px] rounded-bl-[4px] px-4 py-2 font-sans text-[14px] font-medium leading-[19.6px] tracking-normal">Undergraduate</span>
@@ -336,52 +339,52 @@
 
   <!-- ========== TESTIMONIALS ========== -->
   <section id="students" class="bg-white">
-    <div class="reveal mx-auto grid max-w-site items-stretch gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] md:gap-0 md:px-8">
-      <div class="border-line px-5 md:border-r md:px-0">
-        <div class="py-14 md:py-16 md:pr-10 lg:py-20 lg:pr-14">
-          <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-0 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] md:px-8">
+      <div class="border-b border-line px-5 md:border-b-0 md:border-r md:px-0">
+        <div class="py-10 md:py-12 md:pr-8 lg:py-20 lg:pr-14">
+          <p class="mb-4 flex items-center gap-2 text-[14px] text-navy md:mb-6">
             <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="4" height="4" fill="#01293A"/>
             </svg>
             Testimonials
           </p>
-          <h2 class="font-display text-3xl font-semibold text-navy md:text-4xl">From Our Students</h2>
+          <h2 class="font-display text-[28px] font-semibold leading-tight text-navy md:text-3xl lg:text-4xl">From Our Students</h2>
         </div>
       </div>
 
       <div class="px-5 md:px-0">
-        <div class="py-14 md:py-16 md:pl-10 lg:py-20 lg:pl-14">
-          <blockquote id="quote-text" class="m-0 font-sans text-[28px] font-normal not-italic leading-[39.2px] tracking-normal text-navy"></blockquote>
+        <div class="py-10 md:py-12 md:pl-8 lg:py-20 lg:pl-14">
+          <blockquote id="quote-text" class="m-0 font-sans text-[22px] font-normal not-italic leading-[1.4] tracking-normal text-navy sm:text-[24px] md:text-[28px] md:leading-[39.2px]"></blockquote>
 
-          <div class="mt-28 md:mt-32">
-            <img
-              id="quote-avatar"
-              src=""
-              alt=""
-              width="120"
-              height="120"
-              class="h-[120px] w-[120px] rounded-[8px] object-cover"
-            />
-            <div class="mt-5 flex flex-wrap items-end justify-between gap-6">
-              <div>
-                <p id="quote-name" class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy"></p>
+          <div class="mt-12 sm:mt-16 md:mt-24 lg:mt-32">
+            <div class="flex min-w-0 items-start gap-4 md:gap-5">
+              <img
+                id="quote-avatar"
+                src=""
+                alt=""
+                width="120"
+                height="120"
+                class="h-[120px] w-[120px] shrink-0 rounded-[8px] object-cover"
+              />
+              <div class="min-w-0 pt-0.5">
+                <p id="quote-name" class="m-0 font-sans text-[18px] font-medium leading-7 tracking-normal text-navy md:text-[20px]"></p>
                 <p id="quote-meta" class="m-0 mt-1 whitespace-pre-line font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]"></p>
               </div>
+            </div>
 
-              <div class="flex gap-2">
-                <button id="quote-prev" type="button" aria-label="Previous testimonial" class="transition hover:opacity-80">
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#D6D6D6"/>
-                    <path d="M33.0006 23.9999C33.0006 24.1988 32.9215 24.3896 32.7809 24.5303C32.6402 24.6709 32.4496 24.75 32.2506 24.75H17.5609L23.0312 30.2193C23.1009 30.2889 23.1562 30.3717 23.1939 30.4627C23.2316 30.5538 23.251 30.6513 23.251 30.75C23.251 30.8485 23.2316 30.9461 23.1939 31.0371C23.1562 31.1281 23.1009 31.2109 23.0312 31.2805C22.9615 31.3502 22.8788 31.4055 22.7878 31.4432C22.6967 31.4809 22.5991 31.5003 22.5006 31.5003C22.402 31.5003 22.3045 31.4809 22.2134 31.4432C22.1224 31.4055 22.0396 31.3502 21.97 31.2805L15.22 24.5305C15.1502 24.4609 15.0949 24.3782 15.0572 24.2871C15.0194 24.1961 15 24.0985 15 23.9999C15 23.9014 15.0194 23.8038 15.0572 23.7127C15.0949 23.6217 15.1502 23.539 15.22 23.4693L21.97 16.7193C22.1107 16.5786 22.3016 16.4995 22.5006 16.4995C22.6996 16.4995 22.8905 16.5786 23.0312 16.7193C23.172 16.86 23.251 17.0509 23.251 17.2499C23.251 17.449 23.172 17.6398 23.0312 17.7806L17.5609 23.2499H32.2506C32.4496 23.2499 32.6402 23.329 32.7809 23.4696C32.9215 23.6103 33.0006 23.801 33.0006 23.9999Z" fill="white"/>
-                  </svg>
-                </button>
-                <button id="quote-next" type="button" aria-label="Next testimonial" class="transition hover:opacity-80">
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="rotate-180">
-                    <path d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#D6D6D6"/>
-                    <path d="M33.0006 23.9999C33.0006 24.1988 32.9215 24.3896 32.7809 24.5303C32.6402 24.6709 32.4496 24.75 32.2506 24.75H17.5609L23.0312 30.2193C23.1009 30.2889 23.1562 30.3717 23.1939 30.4627C23.2316 30.5538 23.251 30.6513 23.251 30.75C23.251 30.8485 23.2316 30.9461 23.1939 31.0371C23.1562 31.1281 23.1009 31.2109 23.0312 31.2805C22.9615 31.3502 22.8788 31.4055 22.7878 31.4432C22.6967 31.4809 22.5991 31.5003 22.5006 31.5003C22.402 31.5003 22.3045 31.4809 22.2134 31.4432C22.1224 31.4055 22.0396 31.3502 21.97 31.2805L15.22 24.5305C15.1502 24.4609 15.0949 24.3782 15.0572 24.2871C15.0194 24.1961 15 24.0985 15 23.9999C15 23.9014 15.0194 23.8038 15.0572 23.7127C15.0949 23.6217 15.1502 23.539 15.22 23.4693L21.97 16.7193C22.1107 16.5786 22.3016 16.4995 22.5006 16.4995C22.6996 16.4995 22.8905 16.5786 23.0312 16.7193C23.172 16.86 23.251 17.0509 23.251 17.2499C23.251 17.449 23.172 17.6398 23.0312 17.7806L17.5609 23.2499H32.2506C32.4496 23.2499 32.6402 23.329 32.7809 23.4696C32.9215 23.6103 33.0006 23.801 33.0006 23.9999Z" fill="white"/>
-                  </svg>
-                </button>
-              </div>
+            <div class="mt-6 flex justify-end gap-2 md:mt-8">
+              <button id="quote-prev" type="button" aria-label="Previous testimonial" class="transition hover:opacity-80">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-10 w-10 md:h-12 md:w-12">
+                  <path d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#D6D6D6"/>
+                  <path d="M33.0006 23.9999C33.0006 24.1988 32.9215 24.3896 32.7809 24.5303C32.6402 24.6709 32.4496 24.75 32.2506 24.75H17.5609L23.0312 30.2193C23.1009 30.2889 23.1562 30.3717 23.1939 30.4627C23.2316 30.5538 23.251 30.6513 23.251 30.75C23.251 30.8485 23.2316 30.9461 23.1939 31.0371C23.1562 31.1281 23.1009 31.2109 23.0312 31.2805C22.9615 31.3502 22.8788 31.4055 22.7878 31.4432C22.6967 31.4809 22.5991 31.5003 22.5006 31.5003C22.402 31.5003 22.3045 31.4809 22.2134 31.4432C22.1224 31.4055 22.0396 31.3502 21.97 31.2805L15.22 24.5305C15.1502 24.4609 15.0949 24.3782 15.0572 24.2871C15.0194 24.1961 15 24.0985 15 23.9999C15 23.9014 15.0194 23.8038 15.0572 23.7127C15.0949 23.6217 15.1502 23.539 15.22 23.4693L21.97 16.7193C22.1107 16.5786 22.3016 16.4995 22.5006 16.4995C22.6996 16.4995 22.8905 16.5786 23.0312 16.7193C23.172 16.86 23.251 17.0509 23.251 17.2499C23.251 17.449 23.172 17.6398 23.0312 17.7806L17.5609 23.2499H32.2506C32.4496 23.2499 32.6402 23.329 32.7809 23.4696C32.9215 23.6103 33.0006 23.801 33.0006 23.9999Z" fill="white"/>
+                </svg>
+              </button>
+              <button id="quote-next" type="button" aria-label="Next testimonial" class="transition hover:opacity-80">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-10 w-10 rotate-180 md:h-12 md:w-12">
+                  <path d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#D6D6D6"/>
+                  <path d="M33.0006 23.9999C33.0006 24.1988 32.9215 24.3896 32.7809 24.5303C32.6402 24.6709 32.4496 24.75 32.2506 24.75H17.5609L23.0312 30.2193C23.1009 30.2889 23.1562 30.3717 23.1939 30.4627C23.2316 30.5538 23.251 30.6513 23.251 30.75C23.251 30.8485 23.2316 30.9461 23.1939 31.0371C23.1562 31.1281 23.1009 31.2109 23.0312 31.2805C22.9615 31.3502 22.8788 31.4055 22.7878 31.4432C22.6967 31.4809 22.5991 31.5003 22.5006 31.5003C22.402 31.5003 22.3045 31.4809 22.2134 31.4432C22.1224 31.4055 22.0396 31.3502 21.97 31.2805L15.22 24.5305C15.1502 24.4609 15.0949 24.3782 15.0572 24.2871C15.0194 24.1961 15 24.0985 15 23.9999C15 23.9014 15.0194 23.8038 15.0572 23.7127C15.0949 23.6217 15.1502 23.539 15.22 23.4693L21.97 16.7193C22.1107 16.5786 22.3016 16.4995 22.5006 16.4995C22.6996 16.4995 22.8905 16.5786 23.0312 16.7193C23.172 16.86 23.251 17.0509 23.251 17.2499C23.251 17.449 23.172 17.6398 23.0312 17.7806L17.5609 23.2499H32.2506C32.4496 23.2499 32.6402 23.329 32.7809 23.4696C32.9215 23.6103 33.0006 23.801 33.0006 23.9999Z" fill="white"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -390,28 +393,30 @@
   </section>
 
   <!-- ========== EVENTS ========== -->
-  <section id="events" class="border-t border-line bg-white">
+  <section id="events" class="border-t border-line bg-white mb-10">
     <div class="w-full border-b border-line">
-      <div class="mx-auto max-w-site px-5 py-10 md:px-8 md:py-12">
-        <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+      <div class="mx-auto max-w-site px-5 py-10 md:px-8 md:py-12 lg:py-14">
+        <p class="mb-4 flex items-center gap-2 text-[14px] text-navy md:mb-6">
           <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="4" height="4" fill="#01293A"/>
           </svg>
           Events
         </p>
-        <h2 class="reveal font-display text-3xl font-semibold text-navy md:text-4xl">Upcoming Events</h2>
+        <h2 class="reveal font-display text-[28px] font-semibold leading-tight text-navy md:text-3xl lg:text-4xl">Upcoming Events</h2>
       </div>
     </div>
 
-    <div class="w-full pb-10">
-      <ul id="events-list" class="reveal flex w-full flex-col"></ul>
+    <div class="w-full border-b border-line">
+      <div class="mx-auto max-w-site border-x border-[#EBF2F5] px-5 md:px-8 lg:px-9">
+        <ul id="events-list" class="reveal flex w-full flex-col"></ul>
+      </div>
     </div>
   </section>
 
   <!-- ========== ADMISSIONS CTA ========== -->
   <section id="admissions" class="bg-maroon">
-    <div class="reveal mx-auto grid max-w-site items-stretch gap-10 px-5 md:px-8 lg:grid-cols-2 lg:gap-0">
-      <div class="border-[#FFFFFF14] py-12 lg:border-r lg:pr-14">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-0 px-5 md:px-8 lg:grid-cols-2 lg:gap-0">
+      <div class="border-b border-[#FFFFFF14] py-10 md:py-12 lg:border-b-0 lg:border-r lg:py-12 lg:pr-14">
         <div class="mx-auto flex h-full w-full max-w-[623px] items-center lg:mx-0">
           <img
             src="assets/images/contact-us.png"
@@ -423,20 +428,19 @@
         </div>
       </div>
 
-      <div class="admissions-copy flex flex-col justify-center py-12 text-white">
-        <div class="border-[#FFFFFF14] py-12 lg:border-y lg:pr-14 lg:pl-14">
-          
-          <p class="mb-6 flex items-center gap-2 text-[14px] text-white">
+      <div class="admissions-copy flex flex-col justify-center py-10 text-white md:py-12">
+        <div class="border-[#FFFFFF14] py-10 md:py-12 lg:border-y lg:px-14">
+          <p class="mb-4 flex items-center gap-2 text-[14px] text-white md:mb-6">
             <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="4" height="4" fill="#FFFFFF"/>
             </svg>
             Contact Us
           </p>
-          <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-white md:text-4xl">Talk with Admissions</h2>
+          <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-white md:text-3xl lg:text-4xl">Talk with Admissions</h2>
           <p class="mt-4 max-w-md font-sans text-base font-normal leading-[22.4px] tracking-normal text-white/90">
             Ask about programs, tuition, scholarships, or campus life, we'll help you take the next step.
           </p>
-          <a href="#contact" class="mt-8 inline-flex w-fit rounded-[4px] bg-white px-6 py-3 font-sans text-base font-semibold text-navy transition hover:bg-mist">
+          <a href="#contact" class="mt-6 inline-flex w-fit rounded-[4px] bg-white px-6 py-3 font-sans text-base font-semibold text-navy transition hover:bg-mist md:mt-8">
             Contact Our Admin
           </a>
         </div>
@@ -446,16 +450,16 @@
 
   <!-- ========== HELP / FAQ ========== -->
   <section class="bg-white">
-    <div class="reveal mx-auto grid max-w-site items-stretch gap-10 px-5 md:px-8 lg:grid-cols-2 lg:gap-0">
-      <div class="flex flex-col justify-between border-line py-24 lg:border-r lg:pr-14">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-0 px-5 md:px-8 lg:grid-cols-2 lg:gap-0">
+      <div class="flex flex-col justify-between gap-10 border-b border-line py-10 md:gap-12 md:border-b-0 md:py-12 lg:border-r lg:py-20 lg:pr-14">
         <div>
-          <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+          <p class="mb-4 flex items-center gap-2 text-[14px] text-navy md:mb-6">
             <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="4" height="4" fill="#01293A"/>
             </svg>
             FAQ
           </p>
-          <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-navy md:text-4xl">Help Center</h2>
+          <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-navy md:text-3xl lg:text-4xl">Help Center</h2>
           <p class="mt-4 max-w-sm font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">
             Explore common questions from students and parents, answered by our admissions team.
           </p>
@@ -470,8 +474,8 @@
         </div>
       </div>
 
-      <div class="py-24 lg:pl-0">
-        <details class="faq group border-b border-t  border-line px-0 py-5 lg:px-10">
+      <div class="py-10 md:py-12 lg:py-20 lg:pl-0">
+        <details class="faq group border-b border-line px-0 py-5 md:border-t lg:px-10">
           <summary class="flex items-start gap-4">
             <span class="faq-icon mt-0.5 shrink-0" aria-hidden="true"></span>
             <span class="font-sans text-base font-medium leading-7 text-navy">What programs does Kinfield offer?</span>
@@ -522,10 +526,10 @@
 
   <!-- ========== NEWSLETTER ========== -->
   <section id="contact" class="border-b border-line bg-mist">
-    <div class="reveal mx-auto grid max-w-site items-stretch gap-8 px-5 md:grid-cols-2 md:gap-0 md:px-8">
-      <div class="border-line md:border-r">
-        <div class="max-w-md py-12 md:py-14 md:pr-10 lg:pr-14">
-          <p class="mb-4 flex items-center gap-2 text-[14px] text-navy">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-0 px-5 md:grid-cols-2 md:gap-0 md:px-8">
+      <div class="border-b border-line md:border-b-0 md:border-r">
+        <div class="max-w-md py-10 md:py-12 md:pr-8 lg:py-14 lg:pr-14">
+          <p class="mb-4 flex items-center gap-2 text-[14px] text-navy md:mb-6">
             <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="4" height="4" fill="#01293A"/>
             </svg>
@@ -536,7 +540,7 @@
           </h2>
         </div>
       </div>
-      <div class="flex items-center py-12 md:py-14 md:pl-10 lg:pl-14">
+      <div class="flex items-center py-10 md:py-12 md:pl-8 lg:py-14 lg:pl-14">
         <form class="flex w-full max-w-md flex-col items-start gap-5" onsubmit="event.preventDefault();">
           <label class="sr-only" for="email">Email address</label>
           <input
@@ -564,11 +568,9 @@
             <img src="assets/images/logo.svg" alt="Kinfield" width="120" height="32" class="h-8 w-[120px]" />
           </a>
           <p class="mt-4 text-base leading-[22.4px] text-[#D6D6D6]">— Learn with purpose. Grow with people.</p>
-    
-    
         </div>
-        <div class="border-t border-[#FFFFFF14] flex flex-col gap-12 p-8 md:p-10 lg:px-8 lg:py-12">
-          <p class="text-[18px] leading-[22.4px] text-white/80">
+        <div class="flex flex-col gap-8 border-t border-[#FFFFFF14] p-8 md:gap-12 md:p-10 lg:px-8 lg:py-12">
+          <p class="text-base leading-[22.4px] text-white/80 md:text-[18px]">
             240 University Avenue, Suite 300, Global<br />
             Education District Center 10010
           </p>
@@ -582,21 +584,19 @@
 
       <!-- Col 2: Quick Links + References -->
       <div class="border-t border-[#FFFFFF14] md:border-t-0 md:border-l lg:border-l-0 lg:border-r">
-        <div class="grid grid-cols-2 gap-x-16 p-12 md:gap-x-24 md:p-12 lg:px-12 lg:py-12">
-  
+        <div class="grid grid-cols-2 gap-x-10 p-8 md:gap-x-16 md:p-10 lg:gap-x-24 lg:px-12 lg:py-12">
           <div>
             <h3 class="text-base font-semibold text-white">Quick Links</h3>
-            <ul class="mt-6 space-y-4 text-base font-normal text-white/80">
+            <ul class="mt-5 space-y-3 text-base font-normal text-white/80 md:mt-6 md:space-y-4">
               <li><a href="#" class="font-normal transition hover:text-white">Home</a></li>
               <li><a href="#about" class="font-normal transition hover:text-white">About</a></li>
               <li><a href="#programs" class="font-normal transition hover:text-white">Program</a></li>
               <li><a href="#contact" class="font-normal transition hover:text-white">Contact</a></li>
-     
             </ul>
           </div>
           <div>
             <h3 class="text-base font-semibold text-white">References</h3>
-            <ul class="mt-6 space-y-4 text-base font-normal text-white/80">
+            <ul class="mt-5 space-y-3 text-base font-normal text-white/80 md:mt-6 md:space-y-4">
               <li><a href="#" class="transition hover:text-white">Licenses</a></li>
               <li><a href="#" class="transition hover:text-white">Style Guide</a></li>
             </ul>
@@ -606,9 +606,9 @@
 
       <!-- Col 3: Social + copyright -->
       <div class="flex flex-col justify-between border-t border-[#FFFFFF14] md:col-span-2 md:border-t lg:col-span-1 lg:border-t-0">
-        <div class="p-12">
+        <div class="p-8 md:p-10 lg:p-12">
           <h3 class="text-base font-semibold">Social Media</h3>
-          <div class="mt-6 flex flex-wrap items-center gap-4 text-base text-white/80">
+          <div class="mt-5 flex flex-wrap items-center gap-4 text-base text-white/80 md:mt-6">
             <a href="#" class="transition hover:text-white">Instagram</a>
             <div class="h-5 border-l border-[#FFFFFF14]"></div>
             <a href="#" class="transition hover:text-white">Linkedin</a>
@@ -616,7 +616,7 @@
             <a href="#" class="transition hover:text-white">YouTube</a>
           </div>
         </div>
-        <div class="border-t border-[#FFFFFF14] p-12">
+        <div class="border-t border-[#FFFFFF14] p-8 md:p-10 lg:p-12">
           <p class="text-base leading-[22.4px] text-[#D6D6D6]">
             © Copyright 2026 Kinfield. Powered by<br /> Webflow
           </p>
