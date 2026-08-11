@@ -227,9 +227,9 @@ if (eventsList) {
   eventsList.innerHTML = events
     .map(
       (event) => `
-    <li>
-      <div class="border-x border-line px-3 pt-3 md:px-4 md:pt-4">
-        <div class="grid grid-cols-1 items-stretch bg-[#F8FBFC] md:grid-cols-2 lg:grid-cols-[minmax(0,243px)_minmax(0,336px)_minmax(0,335px)_minmax(0,1fr)] xl:grid-cols-[243px_336px_335px_minmax(0,1fr)]">
+    <li class="last:border-b last:border-line">
+      <div class="mx-auto max-w-site border-x border-[#EBF2F5] px-5 py-9 md:px-8 lg:px-9">
+        <div class="grid grid-cols-1 items-stretch bg-[#F8FBFC] md:grid-cols-2 lg:grid-cols-[minmax(0,243px)_minmax(0,336px)_minmax(0,335px)_minmax(0,1fr)] xl:grid-cols-[243px_336px_335px_minmax(0,1fr)] lg:p-7 rounded-[8px]">
           <div class="flex flex-col justify-between border-line px-5 py-6 md:px-6 lg:border-r">
             <p class="m-0 font-sans text-[28px] font-semibold leading-none tracking-normal text-navy">${escapeHtml(event.index)}</p>
             <div>
