@@ -12,23 +12,120 @@ html {
 body {
   margin: 0;
   font-family: "Manrope", system-ui, sans-serif;
+  font-size: 16px;
   color: #1a1a1a;
   background: #fff;
+}
+
+p {
+  font-size: 16px;
 }
 
 .font-display {
   font-family: "Manrope", system-ui, sans-serif;
 }
 
-/* Hero atmosphere */
-.hero {
-  isolation: isolate;
-  z-index: 0;
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%), url("../images/banner-image.png");
-  background-size: cover;
-  background-position: center 30%;
+/* Animated custom cursor (desktop / fine pointer only) */
+.site-cursor {
+  display: none;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
 }
 
+body.has-site-cursor {
+  cursor: none;
+}
+body.has-site-cursor a,
+body.has-site-cursor button,
+body.has-site-cursor [role=button],
+body.has-site-cursor summary,
+body.has-site-cursor label[for],
+body.has-site-cursor input,
+body.has-site-cursor textarea,
+body.has-site-cursor select,
+body.has-site-cursor .site-nav__btn,
+body.has-site-cursor .burger-btn {
+  cursor: none;
+}
+
+body.has-site-cursor .site-cursor {
+  display: block;
+}
+
+.site-cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1.5px solid rgba(125, 0, 0, 0.45);
+  border-radius: 50%;
+  background: rgba(125, 0, 0, 0.06);
+  transform: translate3d(-100px, -100px, 0) scale(1);
+  transition: width 0.28s ease, height 0.28s ease, margin 0.28s ease, background 0.28s ease, border-color 0.28s ease, opacity 0.2s ease;
+  will-change: transform;
+  opacity: 0;
+}
+
+.site-cursor__pointer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin: -2px 0 0 -5px;
+  background: url("../images/cursor.svg") center/contain no-repeat;
+  transform: translate3d(-100px, -100px, 0) rotate(0deg) scale(1);
+  will-change: transform;
+  opacity: 0;
+  filter: drop-shadow(0 2px 4px rgba(1, 41, 58, 0.25));
+  animation: cursor-cap-bob 2.4s ease-in-out infinite;
+}
+
+.site-cursor.is-visible .site-cursor__ring,
+.site-cursor.is-visible .site-cursor__pointer {
+  opacity: 1;
+}
+
+.site-cursor.is-hover .site-cursor__ring {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-color: rgba(125, 0, 0, 0.7);
+  background: rgba(125, 0, 0, 0.1);
+}
+
+.site-cursor.is-hover .site-cursor__pointer {
+  animation-duration: 1.2s;
+}
+
+.site-cursor.is-down .site-cursor__ring {
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  background: rgba(125, 0, 0, 0.16);
+}
+
+@keyframes cursor-cap-bob {
+  0%, 100% {
+    filter: drop-shadow(0 2px 4px rgba(1, 41, 58, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 4px 8px rgba(125, 0, 0, 0.28));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-cursor__pointer {
+    animation: none;
+  }
+  .site-cursor__ring,
+  .site-cursor__pointer {
+    transition: none;
+  }
+}
 .site-nav {
   position: fixed;
   inset-inline: 0;
@@ -36,6 +133,7 @@ body {
   z-index: 100;
   color: #fff;
   background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1215686275);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .site-nav.is-scrolled {
@@ -44,6 +142,82 @@ body {
 }
 .site-nav.is-scrolled .mobile-nav {
   background: #01293a;
+}
+.site-nav__col--logo {
+  border-left: 0;
+  border-right: 0;
+}
+@media (min-width: 768px) {
+  .site-nav__col--logo {
+    border-left: 1px solid rgba(255, 255, 255, 0.1215686275);
+    border-right: 1px solid rgba(255, 255, 255, 0.1607843137);
+  }
+}
+.site-nav__col--actions {
+  gap: 16px;
+}
+@media (max-width: 767.98px) {
+  .site-nav__col--actions {
+    display: none !important;
+  }
+}
+.site-nav__list {
+  gap: 48px;
+  font-size: 16px;
+}
+.site-nav__btn {
+  background: rgba(255, 255, 255, 0.1607843137);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .site-nav__btn {
+    padding: 16px 24px;
+  }
+}
+.site-nav__contact {
+  font-size: 16px;
+}
+
+/* Burger → close animation */
+.burger-btn__box {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 16px;
+}
+.burger-btn__line {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.2s ease, top 0.3s ease;
+}
+.burger-btn__line:nth-child(1) {
+  top: 0;
+}
+.burger-btn__line:nth-child(2) {
+  top: 7px;
+}
+.burger-btn__line:nth-child(3) {
+  top: 14px;
+}
+.burger-btn.is-open .burger-btn__line:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+.burger-btn.is-open .burger-btn__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger-btn.is-open .burger-btn__line:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
 }
 
 /* Feature list hairlines */
@@ -85,6 +259,11 @@ body {
      object-fit: cover;
 }
 
+/* Admissions CTA copy frame — top / bottom / left connected */
+.admissions-copy {
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 0 rgba(255, 255, 255, 0.12), inset 1px 0 0 0 rgba(255, 255, 255, 0.12);
+}
+
 /* FAQ accordion */
 details.faq summary {
   list-style: none;
@@ -95,13 +274,13 @@ details.faq summary::-webkit-details-marker {
 }
 details.faq .faq-icon::before {
   content: "+";
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   line-height: 1;
   font-weight: 400;
-  color: #7d0000;
+  color: #01293a;
 }
 details.faq[open] .faq-icon::before {
-  content: "−";
+  content: "—";
 }
 details.faq[open] .faq-answer {
   animation: faq-in 0.28s ease;
@@ -148,13 +327,13 @@ details.faq[open] .faq-answer {
 }
 /* Program badge tones */
 .badge-green {
-  background: rgba(18, 84, 50, 0.12);
-  color: #125432;
+  background: #125432;
+  color: #fff;
 }
 
 .badge-maroon {
-  background: rgba(125, 0, 0, 0.1);
-  color: #7d0000;
+  background: #7d0000;
+  color: #fff;
 }
 
 /* Mobile nav */
@@ -165,4 +344,25 @@ details.faq[open] .faq-answer {
 }
 .mobile-nav.open {
   max-height: 320px;
+}
+
+/* Inline campus video */
+#campus-media.is-playing #campus-poster {
+  visibility: hidden;
+}
+
+.campus-video-wrap {
+  background: #000;
+}
+.campus-video-wrap iframe,
+.campus-video-wrap #campus-video-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.campus-mute-btn {
+  z-index: 2;
 }/*# sourceMappingURL=style.css.map */

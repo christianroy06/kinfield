@@ -43,162 +43,163 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body class="font-body antialiased">
 
   <!-- ========== NAV ========== -->
   <nav id="site-nav" class="site-nav">
-    <div class="site-nav__inner mx-auto grid max-w-site grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-5 md:px-8">
-      <ul class="hidden items-center gap-7 justify-self-start text-[13px] font-medium tracking-wide lg:flex">
-        <li><a href="#about" class="opacity-90 transition hover:opacity-100">About</a></li>
-        <li><a href="#programs" class="opacity-90 transition hover:opacity-100">Programs</a></li>
-        <li><a href="#admissions" class="opacity-90 transition hover:opacity-100">Admissions</a></li>
-        <li><a href="#students" class="opacity-90 transition hover:opacity-100">Students</a></li>
-        <li><a href="#events" class="opacity-90 transition hover:opacity-100">Events</a></li>
-      </ul>
-      <div class="lg:hidden" aria-hidden="true"></div>
+    <div class="site-nav__inner mx-auto grid max-w-site grid-cols-2 items-stretch md:grid-cols-3 md:px-8">
+      <!-- Left: burger (mobile/tablet) / links (desktop) -->
+      <div class="site-nav__col site-nav__col--links flex items-center self-stretch px-4 py-4 sm:px-5 sm:py-5">
+        <button id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" class="burger-btn inline-flex items-center justify-center rounded p-2 hover:bg-white/10 lg:hidden">
+          <span class="burger-btn__box" aria-hidden="true">
+            <span class="burger-btn__line"></span>
+            <span class="burger-btn__line"></span>
+            <span class="burger-btn__line"></span>
+          </span>
+        </button>
+        <ul class="site-nav__list hidden items-center font-medium tracking-wide lg:flex">
+          <li><a href="#" class="opacity-90 transition hover:opacity-100">Home</a></li>
+          <li><a href="#about" class="opacity-90 transition hover:opacity-100">About</a></li>
+          <li><a href="#programs" class="opacity-90 transition hover:opacity-100">Programs</a></li>
+        </ul>
+      </div>
 
-      <a href="#" class="justify-self-center" aria-label="Kinfield University">
-        <img src="assets/images/logo.svg" alt="Kinfield" width="120" height="32" class="h-8 w-[120px]" />
+      <!-- Center: logo -->
+      <a href="#" class="site-nav__col site-nav__col--logo flex items-center justify-center px-4 py-4 sm:px-6 sm:py-5" aria-label="Kinfield University">
+        <img src="assets/images/logo.svg" alt="Kinfield" width="120" height="32" class="h-7 w-auto sm:h-8 sm:w-[120px]" />
       </a>
 
-      <div class="flex items-center justify-self-end gap-3">
-        <button type="button" aria-label="Search" class="hidden rounded-full p-2 opacity-90 transition hover:bg-white/10 hover:opacity-100 sm:inline-flex">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z" />
-          </svg>
-        </button>
-        <a href="#contact" class="hidden rounded border border-white/80 px-4 py-1.5 text-[13px] font-medium tracking-wide transition hover:bg-white hover:text-navy sm:inline-block">
-          Contact
+      <!-- Right: tablet + desktop only -->
+      <div class="site-nav__col site-nav__col--actions hidden items-center justify-end self-stretch px-4 py-4 md:flex sm:px-5 sm:py-5">
+        <a href="#contact" class="site-nav__contact hidden font-medium tracking-wide opacity-90 transition hover:opacity-100 lg:inline-block">
+          Contact Us
         </a>
-        <button id="menu-btn" type="button" aria-label="Open menu" class="inline-flex rounded p-2 hover:bg-white/10 lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
-          </svg>
-        </button>
+        <a href="#programs" class="site-nav__btn font-medium tracking-wide transition hover:bg-white/25">
+          Explore Programs
+        </a>
       </div>
     </div>
     <div id="mobile-nav" class="mobile-nav border-t border-white/10 bg-navy/95 lg:hidden">
       <ul class="flex flex-col gap-1 px-5 py-4 text-sm">
+        <li><a href="#" class="block py-2">Home</a></li>
         <li><a href="#about" class="block py-2">About</a></li>
         <li><a href="#programs" class="block py-2">Programs</a></li>
-        <li><a href="#admissions" class="block py-2">Admissions</a></li>
-        <li><a href="#students" class="block py-2">Students</a></li>
-        <li><a href="#events" class="block py-2">Events</a></li>
-        <li><a href="#contact" class="mt-2 inline-block rounded border border-white/70 px-4 py-2">Contact</a></li>
+        <li><a href="#contact" class="block py-2">Contact Us</a></li>
+        <li class="md:hidden"><a href="#programs" class="site-nav__btn mt-2 inline-block text-sm font-medium">Explore Programs</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ========== HERO ========== -->
-  <header class="hero relative min-h-[92vh] text-white">
-    <div class="mx-auto flex min-h-[92vh] max-w-site flex-col justify-end px-5 pb-20 pt-28 md:justify-center md:px-8 md:pb-24 md:pt-32">
-      <div class="grid items-end gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
-        <div class="hero-copy">
-          <h1 class="font-display text-[2.35rem] font-semibold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-            Build Future at<br class="hidden sm:block" /> Kinfield University
-          </h1>
-          <a href="#admissions" class="mt-8 inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-semibold text-navy transition hover:bg-mist">
-            Enroll now
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </a>
+  <!-- ========== BANNER ========== -->
+  <header
+    class="hero relative isolate z-0 flex min-h-[70svh] flex-col justify-end bg-cover bg-center bg-no-repeat text-white lg:h-screen lg:min-h-screen"
+    style="background-image: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.4) 100%), url('assets/images/banner-image.png');"
+  >
+    <div class="w-full border-t border-[#FFFFFF29]">
+      <div class="mx-auto w-full max-w-site px-5 pb-12 pt-8 md:px-8">
+        <div class="grid items-start gap-8 md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:items-center lg:justify-between lg:gap-10 xl:gap-16">
+          <div class="hero-copy box-border flex w-full min-w-0 items-center">
+            <h1 class="m-0 font-sans text-[clamp(2.5rem,8vw,96px)] font-semibold leading-[1.1] tracking-normal xl:text-[96px] xl:leading-[105.6px]">
+              Build Future at<br /> Kinfield University
+            </h1>
+          </div>
+          <div class="hero-copy-delay box-border flex w-full max-w-[460px] flex-col items-start justify-center gap-12 lg:max-w-none">
+            <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-white/90">
+              A modern campus for curious minds, hands-on learning, supportive mentors, and global-ready programs designed to help you thrive.
+            </p>
+            <a href="#programs" class="inline-flex rounded-[4px] bg-white px-6 py-4 text-base font-semibold text-navy transition hover:bg-mist">
+              Explore Programs
+            </a>
+          </div>
         </div>
-        <p class="hero-copy-delay max-w-md text-[15px] leading-relaxed text-white/90 md:justify-self-end md:pb-2 md:text-right">
-          Join a community of students from over 100 countries and build your future at Kinfield University—where curiosity, craft, and real-world impact meet.
-        </p>
       </div>
     </div>
   </header>
 
   <!-- ========== ABOUT ========== -->
-  <section id="about" class="bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-site px-5 md:px-8">
-      <div class="reveal grid gap-8 border-b border-line pb-14 md:grid-cols-2 md:gap-16">
-        <h2 class="font-display text-3xl font-semibold leading-tight text-ink md:text-[2.15rem]">
-          At Kinfield University, Every Learner Builds For Real-World Impact
-        </h2>
-        <div class="space-y-4 text-[15px] leading-relaxed text-mute">
-          <p>
-            For more than a century, Kinfield has prepared students to lead with clarity and courage. Our programs blend rigorous scholarship with hands-on practice across labs, studios, clinics, and communities.
-          </p>
-          <p>
-            From first-year seminars to advanced research, you will learn beside mentors who expect excellence—and give you the tools to deliver it.
-          </p>
+  <section id="about" class="bg-white pt-20 md:pt-24">
+    <div class="mx-auto max-w-site px-5 pb-14 md:px-8">
+      <div class="reveal">
+        <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+          <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="4" height="4" fill="#01293A"/>
+          </svg>
+          About Kinfield
+        </p>
+        <div class="grid items-start gap-10 md:grid-cols-2 md:gap-24">
+          <h2 class="font-display w-full max-w-[600px] text-[28px] font-semibold leading-tight text-navy">
+            A Modern University Experience Built for Real-World Impact
+          </h2>
+          <div class="space-y-4 text-base leading-relaxed text-mute">
+            <p>
+              Kinfield is a forward-thinking university focused on practical learning, critical thinking, and meaningful community impact. Our classes blend strong academic foundations with real-world projects, so students graduate with skills, confidence, and a clear direction.
+            </p>
+            <p>
+              Beyond the classroom, students collaborate with industry partners, engage in interdisciplinary work, and learn from faculty who bring real professional experience into teaching.
+            </p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="reveal mt-14 grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-        <div class="overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80"
-            alt="Students walking together on campus"
-            class="h-full min-h-[420px] w-full object-cover"
-          />
+    <div class="w-full border-t border-line">
+      <div class="reveal mx-auto grid max-w-site items-stretch md:px-8 lg:grid-cols-2 lg:gap-0">
+        <div class="border-[#EBF2F5] px-5 pb-0 md:px-0 lg:border-r lg:pb-24">
+          <div class="overflow-hidden pt-8 pb-0 md:py-8 md:pr-6 lg:py-14 lg:pr-14">
+            <img
+              src="assets/images/about-image.png"
+              alt="Students walking together on campus"
+              class="aspect-[633/690] w-full rounded-[8px] object-cover"
+            />
+          </div>
         </div>
 
-        <div>
-          <h3 class="font-display text-2xl font-semibold leading-snug text-ink md:text-[1.75rem]">
-            Modern facilities that improve every class, lab, and campus experience.
-          </h3>
+        <div class="pb-8 md:pb-8 lg:pb-0">
+          <div class="px-5 py-8 md:pl-6 md:py-8 lg:px-14 lg:py-14">
+            <p class="mb-4 flex items-center gap-2 text-[14px] text-navy md:mb-6">
+              <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="4" height="4" fill="#01293A"/>
+              </svg>
+              What We Stand For
+            </p>
+            <h2 class="font-display w-full max-w-[600px] text-[28px] font-semibold leading-tight text-navy">
+              Simple principles that shape every class, lab, and campus experience.
+            </h2>
+          </div>
 
-          <ul class="mt-8">
-            <li class="feature-item flex gap-4 py-4">
-              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 9.75V6.75A2.25 2.25 0 0 1 6.75 4.5h10.5A2.25 2.25 0 0 1 19.5 6.75v3M4.5 9.75h15M4.5 9.75v7.5A2.25 2.25 0 0 0 6.75 19.5h10.5a2.25 2.25 0 0 0 2.25-2.25v-7.5M9 14.25h6"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink">Clinical Experience</p>
-                <p class="mt-0.5 text-sm text-mute">Supervised practice in partner clinics and teaching hospitals.</p>
-              </div>
+          <ul>
+            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+              <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">01</span>
+              <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Student-First Support</p>
+              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Advisors and mentors help you stay on track and grow.</p>
             </li>
-            <li class="feature-item flex gap-4 py-4">
-              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.75h4.5m-9 4.5h13.5M6 8.25v9A2.25 2.25 0 0 0 8.25 19.5h7.5A2.25 2.25 0 0 0 18 17.25v-9"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink">Practical Workshops</p>
-                <p class="mt-0.5 text-sm text-mute">Studios and maker spaces for project-based learning.</p>
-              </div>
+            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+              <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">02</span>
+              <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Academic Excellence</p>
+              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Clear standards, strong teaching, and consistent improvement across programs.</p>
             </li>
-            <li class="feature-item flex gap-4 py-4">
-              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.696a2.25 2.25 0 0 1-.659 1.591l-5.621 5.672c-.577.577-.136 1.562.678 1.562h15.704c.814 0 1.255-.985.678-1.562l-5.621-5.672a2.25 2.25 0 0 1-.659-1.591V3.104M9.75 3.104A2.25 2.25 0 0 1 12 2.25a2.25 2.25 0 0 1 2.25.854"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink">Research Labs</p>
-                <p class="mt-0.5 text-sm text-mute">Undergraduate access to funded faculty research teams.</p>
-              </div>
+            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+              <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">03</span>
+              <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Practical Learning</p>
+              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Projects, labs, and real cases that match today's industry needs.</p>
             </li>
-            <li class="feature-item flex gap-4 py-4">
-              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72M15 9a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.728 18.72a9.094 9.094 0 0 1-3.741-.479 3 3 0 0 1 4.682-2.72"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink">Campus Community</p>
-                <p class="mt-0.5 text-sm text-mute">Clubs, mentorship circles, and residential learning.</p>
-              </div>
+            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+              <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">04</span>
+              <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Inclusive Community</p>
+              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">A welcoming campus where every voice is respected and valued.</p>
             </li>
-            <li class="feature-item flex gap-4 py-4">
-              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink">Health and Safety</p>
-                <p class="mt-0.5 text-sm text-mute">On-campus clinic, counseling, and 24/7 support.</p>
-              </div>
+            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+              <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">05</span>
+              <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Innovation and Curiosity</p>
+              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">We encourage asking better questions and testing new ideas.</p>
             </li>
-            <li class="feature-item flex gap-4 py-4">
-              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21V8.25L12 3l8.25 5.25V21M8.25 21v-6h7.5v6"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink">Sport / Fitness Center</p>
-                <p class="mt-0.5 text-sm text-mute">Training facilities, courts, and varsity programs.</p>
-              </div>
+            <li class="grid grid-cols-[45px_minmax(0,1fr)] items-start gap-x-[0.7rem] gap-y-1 border-b border-line px-5 py-4 md:pl-8 lg:grid-cols-[45px_minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:px-14 lg:py-5">
+              <span class="font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">06</span>
+              <p class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy">Impact-Driven Mindset</p>
+              <p class="col-start-2 m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-mute lg:col-start-3">Learning that leads to positive change in society and the environment.</p>
             </li>
           </ul>
         </div>
@@ -207,118 +208,180 @@
   </section>
 
   <!-- ========== VIDEO / GALLERY ========== -->
-  <section class="bg-maroon py-20 md:py-24">
-    <div class="mx-auto max-w-site px-5 text-center md:px-8">
-      <p class="reveal text-xs font-semibold uppercase tracking-[0.22em] text-white/70">Campus tour</p>
-      <h2 class="reveal font-display mt-3 text-3xl font-semibold text-white md:text-4xl">Step inside Kinfield</h2>
-      <p class="reveal mx-auto mt-3 max-w-lg text-sm leading-relaxed text-white/80">
-        Take a look at the lecture halls, labs, and gathering spaces where Kinfield students learn and belong.
-      </p>
+  <section class="bg-maroon">
+    <div class="w-full border-b border-[#FFFFFF14]">
+      <div class="reveal mx-auto grid max-w-site items-stretch md:grid-cols-2 md:gap-0">
+        <div class="border-[#FFFFFF14] md:border-r">
+          <div class="px-5 py-8 md:px-8 md:py-8 lg:p-12">
+            <p class="mb-4 flex items-center gap-2 text-[14px] text-white">
+              <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="4" height="4" fill="#FFFFFF"/>
+              </svg>
+              Inside Campus
+            </p>
+            <h2 class="font-display text-[28px] font-semibold leading-tight text-white md:text-4xl">
+              Step Inside Kinfield
+            </h2>
+          </div>
+        </div>
+        <div>
+          <div class="px-5 pb-8 pt-0 md:px-8 md:py-8 lg:p-12">
+            <p class="mb-4 hidden items-center gap-2 text-[14px] opacity-0 select-none md:flex" aria-hidden="true">
+              <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="4" height="4" fill="#FFFFFF"/>
+              </svg>
+              Inside Campus
+            </p>
+            <p class="font-sans text-base font-light leading-[22.4px] tracking-normal text-white/90">
+              Take a quick campus tour to see our classrooms, studios, labs, and student life in motion across campus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <div class="reveal group relative mx-auto mt-10 max-w-4xl overflow-hidden">
+    <div class="mx-auto max-w-site px-5 py-8 md:px-8 md:py-10 lg:py-12">
+      <div id="campus-media" class="reveal group relative w-full overflow-hidden rounded-[8px]">
         <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1400&q=80"
+          id="campus-poster"
+          src="/assets/images/inside-campus.jpg"
           alt="Modern lecture hall at Kinfield"
-          class="aspect-[16/9] w-full object-cover"
+          class="aspect-[16/9] h-auto w-full object-cover lg:h-[640px] lg:aspect-auto"
         />
-        <button type="button" aria-label="Play campus video" class="play-btn absolute bottom-5 right-5 flex h-14 w-14 items-center justify-center rounded-full bg-white text-maroon transition group-hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="ml-0.5 h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 5.14v13.72L19 12 8 5.14Z" />
+        <div id="campus-video-wrap" class="campus-video-wrap absolute inset-0" hidden>
+          <div id="campus-video-player"></div>
+        </div>
+        <button type="button" id="campus-mute-btn" class="campus-mute-btn absolute top-5 right-5 hidden h-11 w-11 items-center justify-center rounded-[4px] bg-white text-navy shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition hover:bg-mist" aria-label="Unmute video" aria-pressed="true">
+          <svg data-icon="muted" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6 9H3v6h3l5 4V5Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="m16 9 5 5M21 9l-5 5"/>
           </svg>
+          <svg data-icon="unmuted" xmlns="http://www.w3.org/2000/svg" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5 6 9H3v6h3l5 4V5Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/>
+          </svg>
+        </button>
+        <button type="button" id="watch-intro-btn" aria-label="Watch Intro" class="absolute bottom-5 right-5 inline-flex h-[47px] w-[173px] items-center justify-center gap-4 rounded-[4px] bg-white px-6 py-3 text-navy shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition hover:bg-mist">
+          <svg data-icon="play" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M4 2.5v11l9-5.5-9-5.5Z"/>
+          </svg>
+          <svg data-icon="pause" xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <rect x="3" y="2" width="3.5" height="12" rx="1"/>
+            <rect x="9.5" y="2" width="3.5" height="12" rx="1"/>
+          </svg>
+          <span data-label class="font-sans text-base font-medium leading-none tracking-normal">Watch Intro</span>
         </button>
       </div>
     </div>
   </section>
 
   <!-- ========== PROGRAMS ========== -->
-  <section id="programs" class="bg-mist py-20 md:py-24">
+  <section id="programs" class="bg-mist py-20 md:py-24 bg-[#F8FBFC]">
     <div class="mx-auto max-w-site px-5 md:px-8">
-      <h2 class="reveal font-display text-center text-3xl font-semibold text-ink md:text-4xl">Browse Programs</h2>
+        <p class="mb-6 flex items-center gap-2 text-[14px] text-navy justify-center">
+          <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="4" height="4" fill="#01293A"/>
+          </svg>
+          Programs
+        </p>
+      <h2 class="reveal font-display text-center text-[28px] font-semibold text-navy md:text-4xl">Browse Programs</h2>
 
       <div class="reveal mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <!-- Card 1 -->
-        <article class="border border-line bg-white p-6 transition hover:border-maroon/30">
-          <div class="flex items-start justify-between">
-            <span class="text-maroon">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 0 3-3V4.5a3 3 0 1 0-6 0v8.25a3 3 0 0 0 3 3Z"/></svg>
-            </span>
-            <span class="badge-green rounded px-2 py-0.5 text-[11px] font-semibold">Part-time</span>
-          </div>
-          <h3 class="mt-8 font-display text-xl font-semibold text-ink">Communications</h3>
-          <p class="mt-2 text-sm leading-relaxed text-mute">Storytelling, media strategy, and public voice across digital platforms.</p>
+        <article class="relative flex flex-col overflow-hidden rounded-[8px] bg-white p-6">
+          <span class="badge-green absolute right-0 top-6 rounded-tl-[4px] rounded-bl-[4px] px-4 py-2 font-sans text-[14px] font-medium leading-[19.6px] tracking-normal">Undergraduate</span>
+          <img src="assets/images/computer-science.png" alt="" width="32" height="32" class="h-8 w-8 object-contain" />
+          <h3 class="mt-8 font-sans text-xl font-semibold text-navy">Computer Science</h3>
+          <div class="my-4 h-px w-full bg-[#EEEEEE]"></div>
+          <p class="m-0 font-sans text-base font-normal leading-[22.4px] text-mute">
+            Learn programming, data structures, and modern software development through labs and team projects.
+          </p>
         </article>
 
         <!-- Card 2 -->
-        <article class="border border-line bg-white p-6 transition hover:border-maroon/30">
-          <div class="flex items-start justify-between">
-            <span class="text-maroon">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75c0-1.5 1.5-3 3.75-3H18c1.5 0 3.75.75 3.75 3M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM18.75 9.75a2.25 2.25 0 1 1-4.5 0"/></svg>
-            </span>
-            <span class="badge-maroon rounded px-2 py-0.5 text-[11px] font-semibold">Online</span>
-          </div>
-          <h3 class="mt-8 font-display text-xl font-semibold text-ink">Business</h3>
-          <p class="mt-2 text-sm leading-relaxed text-mute">Leadership, finance, and entrepreneurship grounded in ethics.</p>
+        <article class="relative flex flex-col overflow-hidden rounded-[8px] bg-white p-6">
+          <span class="badge-maroon absolute right-0 top-6 rounded-tl-[4px] rounded-bl-[4px] px-4 py-2 font-sans text-[14px] font-medium leading-[19.6px] tracking-normal">Graduate</span>
+          <img src="assets/images/data-science.png" alt="" width="32" height="32" class="h-8 w-8 object-contain" />
+          <h3 class="mt-8 font-sans text-xl font-semibold text-navy">Data Science</h3>
+          <div class="my-4 h-px w-full bg-[#EEEEEE]"></div>
+          <p class="m-0 font-sans text-base font-normal leading-[22.4px] text-mute">
+            Turn data into decisions using analytics, visualization, and practical machine learning for real business scenarios.
+          </p>
         </article>
 
         <!-- Card 3 -->
-        <article class="border border-line bg-white p-6 transition hover:border-maroon/30">
-          <div class="flex items-start justify-between">
-            <span class="text-maroon">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.708-.182-1.39-.518-2.01ZM15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
-            </span>
-            <span class="badge-green rounded px-2 py-0.5 text-[11px] font-semibold">Part-time</span>
-          </div>
-          <h3 class="mt-8 font-display text-xl font-semibold text-ink">Creative Arts</h3>
-          <p class="mt-2 text-sm leading-relaxed text-mute">Studio practice in visual art, performance, and critical theory.</p>
+        <article class="relative flex flex-col overflow-hidden rounded-[8px] bg-white p-6">
+          <span class="badge-maroon absolute right-0 top-6 rounded-tl-[4px] rounded-bl-[4px] px-4 py-2 font-sans text-[14px] font-medium leading-[19.6px] tracking-normal">Graduate</span>
+          <img src="assets/images/businesAd.png" alt="" width="32" height="32" class="h-8 w-8 object-contain" />
+          <h3 class="mt-8 font-sans text-xl font-semibold text-navy">Business Administration</h3>
+          <div class="my-4 h-px w-full bg-[#EEEEEE]"></div>
+          <p class="m-0 font-sans text-base font-normal leading-[22.4px] text-mute">
+            Build leadership and strategy skills for modern, fast evolving business environments and organizational challenges.
+          </p>
         </article>
 
         <!-- Card 4 -->
-        <article class="border border-line bg-white p-6 transition hover:border-maroon/30">
-          <div class="flex items-start justify-between">
-            <span class="text-maroon">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.696a2.25 2.25 0 0 1-.659 1.591l-5.621 5.672c-.577.577-.136 1.562.678 1.562h15.704c.814 0 1.255-.985.678-1.562l-5.621-5.672a2.25 2.25 0 0 1-.659-1.591V3.104"/></svg>
-            </span>
-            <span class="badge-maroon rounded px-2 py-0.5 text-[11px] font-semibold">Online</span>
-          </div>
-          <h3 class="mt-8 font-display text-xl font-semibold text-ink">Design</h3>
-          <p class="mt-2 text-sm leading-relaxed text-mute">Human-centered design for products, services, and systems.</p>
+        <article class="relative flex flex-col overflow-hidden rounded-[8px] bg-white p-6">
+          <span class="badge-green absolute right-0 top-6 rounded-tl-[4px] rounded-bl-[4px] px-4 py-2 font-sans text-[14px] font-medium leading-[19.6px] tracking-normal">Undergraduate</span>
+          <img src="assets/images/finance.png" alt="" width="32" height="32" class="h-8 w-8 object-contain" />
+          <h3 class="mt-8 font-sans text-xl font-semibold text-navy">Finance</h3>
+          <div class="my-4 h-px w-full bg-[#EEEEEE]"></div>
+          <p class="m-0 font-sans text-base font-normal leading-[22.4px] text-mute">
+            Understand financial planning, markets, and decision-making through practical case studies and modern tools.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ========== TESTIMONIALS ========== -->
-  <section id="students" class="bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-site px-5 md:px-8">
-      <div class="reveal grid gap-10 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] md:gap-16">
-        <h2 class="font-display text-3xl font-semibold text-ink md:text-4xl">From Our Students</h2>
+  <section id="students" class="bg-white">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] md:gap-0 md:px-8">
+      <div class="border-line px-5 md:border-r md:px-0">
+        <div class="py-14 md:py-16 md:pr-10 lg:py-20 lg:pr-14">
+          <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+            <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="4" height="4" fill="#01293A"/>
+            </svg>
+            Testimonials
+          </p>
+          <h2 class="font-display text-3xl font-semibold text-navy md:text-4xl">From Our Students</h2>
+        </div>
+      </div>
 
-        <div>
-          <blockquote id="quote-text" class="font-display text-xl italic leading-relaxed text-ink md:text-2xl">
-            “Kinfield pushed me to think bigger—then gave me the mentors, labs, and peer community to turn that ambition into work I’m proud of.”
-          </blockquote>
+      <div class="px-5 md:px-0">
+        <div class="py-14 md:py-16 md:pl-10 lg:py-20 lg:pl-14">
+          <blockquote id="quote-text" class="m-0 font-sans text-[28px] font-normal not-italic leading-[39.2px] tracking-normal text-navy"></blockquote>
 
-          <div class="mt-8 flex flex-wrap items-end justify-between gap-6">
-            <div class="flex items-center gap-3">
-              <img
-                id="quote-avatar"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
-                alt="Angela Barker"
-                class="h-12 w-12 object-cover"
-              />
+          <div class="mt-28 md:mt-32">
+            <img
+              id="quote-avatar"
+              src=""
+              alt=""
+              width="120"
+              height="120"
+              class="h-[120px] w-[120px] rounded-[8px] object-cover"
+            />
+            <div class="mt-5 flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p id="quote-name" class="text-sm font-semibold text-ink">Angela Barker</p>
-                <p id="quote-meta" class="text-xs text-mute">Alumni 2020</p>
+                <p id="quote-name" class="m-0 font-sans text-[20px] font-medium leading-7 tracking-normal text-navy"></p>
+                <p id="quote-meta" class="m-0 mt-1 whitespace-pre-line font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]"></p>
               </div>
-            </div>
 
-            <div class="flex gap-2">
-              <button id="quote-prev" type="button" aria-label="Previous testimonial" class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition hover:border-maroon hover:text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-              </button>
-              <button id="quote-next" type="button" aria-label="Next testimonial" class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition hover:border-maroon hover:text-maroon">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              </button>
+              <div class="flex gap-2">
+                <button id="quote-prev" type="button" aria-label="Previous testimonial" class="transition hover:opacity-80">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#D6D6D6"/>
+                    <path d="M33.0006 23.9999C33.0006 24.1988 32.9215 24.3896 32.7809 24.5303C32.6402 24.6709 32.4496 24.75 32.2506 24.75H17.5609L23.0312 30.2193C23.1009 30.2889 23.1562 30.3717 23.1939 30.4627C23.2316 30.5538 23.251 30.6513 23.251 30.75C23.251 30.8485 23.2316 30.9461 23.1939 31.0371C23.1562 31.1281 23.1009 31.2109 23.0312 31.2805C22.9615 31.3502 22.8788 31.4055 22.7878 31.4432C22.6967 31.4809 22.5991 31.5003 22.5006 31.5003C22.402 31.5003 22.3045 31.4809 22.2134 31.4432C22.1224 31.4055 22.0396 31.3502 21.97 31.2805L15.22 24.5305C15.1502 24.4609 15.0949 24.3782 15.0572 24.2871C15.0194 24.1961 15 24.0985 15 23.9999C15 23.9014 15.0194 23.8038 15.0572 23.7127C15.0949 23.6217 15.1502 23.539 15.22 23.4693L21.97 16.7193C22.1107 16.5786 22.3016 16.4995 22.5006 16.4995C22.6996 16.4995 22.8905 16.5786 23.0312 16.7193C23.172 16.86 23.251 17.0509 23.251 17.2499C23.251 17.449 23.172 17.6398 23.0312 17.7806L17.5609 23.2499H32.2506C32.4496 23.2499 32.6402 23.329 32.7809 23.4696C32.9215 23.6103 33.0006 23.801 33.0006 23.9999Z" fill="white"/>
+                  </svg>
+                </button>
+                <button id="quote-next" type="button" aria-label="Next testimonial" class="transition hover:opacity-80">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="rotate-180">
+                    <path d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z" fill="#D6D6D6"/>
+                    <path d="M33.0006 23.9999C33.0006 24.1988 32.9215 24.3896 32.7809 24.5303C32.6402 24.6709 32.4496 24.75 32.2506 24.75H17.5609L23.0312 30.2193C23.1009 30.2889 23.1562 30.3717 23.1939 30.4627C23.2316 30.5538 23.251 30.6513 23.251 30.75C23.251 30.8485 23.2316 30.9461 23.1939 31.0371C23.1562 31.1281 23.1009 31.2109 23.0312 31.2805C22.9615 31.3502 22.8788 31.4055 22.7878 31.4432C22.6967 31.4809 22.5991 31.5003 22.5006 31.5003C22.402 31.5003 22.3045 31.4809 22.2134 31.4432C22.1224 31.4055 22.0396 31.3502 21.97 31.2805L15.22 24.5305C15.1502 24.4609 15.0949 24.3782 15.0572 24.2871C15.0194 24.1961 15 24.0985 15 23.9999C15 23.9014 15.0194 23.8038 15.0572 23.7127C15.0949 23.6217 15.1502 23.539 15.22 23.4693L21.97 16.7193C22.1107 16.5786 22.3016 16.4995 22.5006 16.4995C22.6996 16.4995 22.8905 16.5786 23.0312 16.7193C23.172 16.86 23.251 17.0509 23.251 17.2499C23.251 17.449 23.172 17.6398 23.0312 17.7806L17.5609 23.2499H32.2506C32.4496 23.2499 32.6402 23.329 32.7809 23.4696C32.9215 23.6103 33.0006 23.801 33.0006 23.9999Z" fill="white"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -327,149 +390,125 @@
   </section>
 
   <!-- ========== EVENTS ========== -->
-  <section id="events" class="border-t border-line bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-site px-5 md:px-8">
-      <h2 class="reveal font-display text-3xl font-semibold text-ink md:text-4xl">Upcoming Events</h2>
+  <section id="events" class="border-t border-line bg-white">
+    <div class="w-full border-b border-line">
+      <div class="mx-auto max-w-site px-5 py-10 md:px-8 md:py-12">
+        <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+          <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="4" height="4" fill="#01293A"/>
+          </svg>
+          Events
+        </p>
+        <h2 class="reveal font-display text-3xl font-semibold text-navy md:text-4xl">Upcoming Events</h2>
+      </div>
+    </div>
 
-      <ul class="reveal mt-10 divide-y divide-line border-y border-line">
-        <li class="grid gap-4 py-6 sm:grid-cols-[72px_1fr] lg:grid-cols-[72px_1fr_180px_160px] lg:items-center lg:gap-8">
-          <div class="text-center sm:text-left">
-            <p class="font-display text-2xl font-semibold leading-none text-ink">16</p>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-mute">Jun</p>
-          </div>
-          <div>
-            <h3 class="text-base font-semibold text-ink">Open Campus Day</h3>
-            <p class="mt-1 text-sm text-mute">10:00 AM · Main Quad &amp; Visitor Center</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80" alt="James Whit" class="h-9 w-9 rounded-full object-cover" />
-            <span class="text-sm text-mute">James Whit</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=320&q=80" alt="Campus event" class="hidden h-16 w-full object-cover lg:block" />
-        </li>
-
-        <li class="grid gap-4 py-6 sm:grid-cols-[72px_1fr] lg:grid-cols-[72px_1fr_180px_160px] lg:items-center lg:gap-8">
-          <div class="text-center sm:text-left">
-            <p class="font-display text-2xl font-semibold leading-none text-ink">22</p>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-mute">Jun</p>
-          </div>
-          <div>
-            <h3 class="text-base font-semibold text-ink">Admissions Workshop</h3>
-            <p class="mt-1 text-sm text-mute">2:00 PM · Harper Hall, Room 210</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&q=80" alt="Nina Cole" class="h-9 w-9 rounded-full object-cover" />
-            <span class="text-sm text-mute">Nina Cole</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=320&q=80" alt="Workshop" class="hidden h-16 w-full object-cover lg:block" />
-        </li>
-
-        <li class="grid gap-4 py-6 sm:grid-cols-[72px_1fr] lg:grid-cols-[72px_1fr_180px_160px] lg:items-center lg:gap-8">
-          <div class="text-center sm:text-left">
-            <p class="font-display text-2xl font-semibold leading-none text-ink">04</p>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-mute">Jul</p>
-          </div>
-          <div>
-            <h3 class="text-base font-semibold text-ink">Research Showcase</h3>
-            <p class="mt-1 text-sm text-mute">5:30 PM · Science Commons Atrium</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" alt="Omar Reyes" class="h-9 w-9 rounded-full object-cover" />
-            <span class="text-sm text-mute">Omar Reyes</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=320&q=80" alt="Research showcase" class="hidden h-16 w-full object-cover lg:block" />
-        </li>
-      </ul>
+    <div class="mx-auto max-w-site px-5 pb-10 md:px-8 md:pb-12">
+      <ul id="events-list" class="reveal flex flex-col"></ul>
     </div>
   </section>
 
   <!-- ========== ADMISSIONS CTA ========== -->
-  <section id="admissions" class="bg-maroon py-20 md:py-24">
-    <div class="reveal mx-auto grid max-w-site items-center gap-12 px-5 md:px-8 lg:grid-cols-2 lg:gap-16">
-      <div class="arch-frame mx-auto w-full max-w-sm lg:mx-0">
+  <section id="admissions" class="bg-maroon">
+    <div class="reveal mx-auto grid max-w-site items-center gap-10 px-5 md:px-8 lg:grid-cols-2 lg:gap-0">
+      <div class="mx-auto w-full max-w-[623px] py-12 lg:mx-0 lg:pr-10">
         <img
-          src="https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?auto=format&fit=crop&w=800&q=80"
-          alt="Graduates overlooking campus"
+          src="assets/images/contact-us.png"
+          alt="Graduates celebrating under the Academics archway"
+          width="623"
+          height="472"
+          class="aspect-[623/472] h-auto w-full max-w-[623px] rounded-[8px] object-cover opacity-100"
         />
       </div>
 
-      <div class="text-white">
-        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">Start here</p>
-        <h2 class="font-display mt-3 text-3xl font-semibold md:text-4xl">Talk With Admissions</h2>
-        <p class="mt-4 max-w-md text-[15px] leading-relaxed text-white/85">
-          Whether you are applying for the first time or transferring, our counselors will help you map deadlines, aid, and the right program fit.
-        </p>
-        <a href="#contact" class="mt-8 inline-flex rounded-md bg-white px-6 py-3 text-sm font-semibold text-maroon transition hover:bg-mist">
+      <div class="admissions-copy py-12 text-white lg:pl-14">
+        <p class="mb-6 flex items-center gap-2 text-[14px] text-white">
+          <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="4" height="4" fill="#FFFFFF"/>
+          </svg>
           Contact Us
+        </p>
+        <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-white md:text-4xl">Talk with Admissions</h2>
+        <p class="mt-4 max-w-md font-sans text-base font-normal leading-[22.4px] tracking-normal text-white/90">
+          Ask about programs, tuition, scholarships, or campus life, we'll help you take the next step.
+        </p>
+        <a href="#contact" class="mt-8 inline-flex w-fit rounded-[4px] bg-white px-6 py-3 font-sans text-base font-semibold text-navy transition hover:bg-mist">
+          Contact Our Admin
         </a>
       </div>
     </div>
   </section>
 
   <!-- ========== HELP / FAQ ========== -->
-  <section class="bg-white py-20 md:py-24">
-    <div class="mx-auto grid max-w-site gap-12 px-5 md:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] lg:gap-20">
-      <div class="reveal">
-        <h2 class="font-display text-3xl font-semibold text-ink md:text-4xl">Help Center</h2>
-        <p class="mt-4 max-w-sm text-[15px] leading-relaxed text-mute">
-          Find quick answers about applications, housing, and campus life—or reach a counselor directly.
-        </p>
-        <div class="mt-8 flex flex-col gap-3 text-sm font-semibold text-maroon">
-          <a href="tel:+15550102900" class="inline-flex items-center gap-2 transition hover:opacity-80">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
-            Call us
-          </a>
-          <a href="mailto:admissions@kinfield.edu" class="inline-flex items-center gap-2 transition hover:opacity-80">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-            Email us
+  <section class="bg-white">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-10 px-5 md:px-8 lg:grid-cols-2 lg:gap-0">
+      <div class="flex flex-col justify-between border-line py-24 lg:border-r lg:pr-14">
+        <div>
+          <p class="mb-6 flex items-center gap-2 text-[14px] text-navy">
+            <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="4" height="4" fill="#01293A"/>
+            </svg>
+            FAQ
+          </p>
+          <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-navy md:text-4xl">Help Center</h2>
+          <p class="mt-4 max-w-sm font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">
+            Explore common questions from students and parents, answered by our admissions team.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <p class="m-0 max-w-[220px] font-sans text-base font-normal leading-[22.4px] text-[#555555]">
+            Or get in touch with our Support Team.
+          </p>
+          <a href="mailto:hello@kinfield.edu" class="font-sans text-base font-medium text-navy transition hover:opacity-80">
+            hello@kinfield.edu
           </a>
         </div>
       </div>
 
-      <div class="reveal divide-y divide-line border-y border-line">
-        <details class="faq group py-5" open>
-          <summary class="flex items-center justify-between gap-4">
-            <span class="text-[15px] font-semibold text-ink">What are the undergraduate admission requirements?</span>
-            <span class="faq-icon shrink-0" aria-hidden="true"></span>
+      <div class="py-24 lg:pl-0">
+        <details class="faq group border-b border-t  border-line px-0 py-5 lg:px-10">
+          <summary class="flex items-start gap-4">
+            <span class="faq-icon mt-0.5 shrink-0" aria-hidden="true"></span>
+            <span class="font-sans text-base font-medium leading-7 text-navy">What programs does Kinfield offer?</span>
           </summary>
-          <p class="faq-answer mt-3 max-w-xl text-sm leading-relaxed text-mute">
-            Applicants submit transcripts, a personal statement, and one recommendation. Test scores are optional for most programs. International students may need proof of English proficiency.
+          <p class="faq-answer mt-3 pl-8 font-sans text-base font-normal leading-[22.4px] text-[#555555]">
+            Kinfield offers undergraduate and graduate programs across Computer Science, Data Science, Business Administration, Finance, and more.
           </p>
         </details>
-        <details class="faq py-5">
-          <summary class="flex items-center justify-between gap-4">
-            <span class="text-[15px] font-semibold text-ink">When is the application deadline?</span>
-            <span class="faq-icon shrink-0" aria-hidden="true"></span>
+        <details class="faq group border-b border-line px-0 py-5 lg:px-10">
+          <summary class="flex items-start gap-4">
+            <span class="faq-icon mt-0.5 shrink-0" aria-hidden="true"></span>
+            <span class="font-sans text-base font-medium leading-7 text-navy">How do I apply?</span>
           </summary>
-          <p class="faq-answer mt-3 max-w-xl text-sm leading-relaxed text-mute">
-            Early decision is November 1. Regular decision is January 15. Transfer and rolling intakes vary by program—check the Admissions calendar for exact dates.
+          <p class="faq-answer mt-3 pl-8 font-sans text-base font-normal leading-[22.4px] text-[#555555]">
+            Submit transcripts, a personal statement, and one recommendation through our online application portal. Test scores are optional for most programs.
           </p>
         </details>
-        <details class="faq py-5">
-          <summary class="flex items-center justify-between gap-4">
-            <span class="text-[15px] font-semibold text-ink">Is financial aid available for international students?</span>
-            <span class="faq-icon shrink-0" aria-hidden="true"></span>
+        <details class="faq group border-b border-line px-0 py-5 lg:px-10">
+          <summary class="flex items-start gap-4">
+            <span class="faq-icon mt-0.5 shrink-0" aria-hidden="true"></span>
+            <span class="font-sans text-base font-medium leading-7 text-navy">Do you offer scholarships?</span>
           </summary>
-          <p class="faq-answer mt-3 max-w-xl text-sm leading-relaxed text-mute">
-            Yes. Merit scholarships and need-based aid are available to eligible international students. Complete the Kinfield Aid Profile with your application.
+          <p class="faq-answer mt-3 pl-8 font-sans text-base font-normal leading-[22.4px] text-[#555555]">
+            Yes. Merit scholarships and need-based aid are available to eligible students. Complete the Kinfield Aid Profile with your application.
           </p>
         </details>
-        <details class="faq py-5">
-          <summary class="flex items-center justify-between gap-4">
-            <span class="text-[15px] font-semibold text-ink">Can I visit campus before applying?</span>
-            <span class="faq-icon shrink-0" aria-hidden="true"></span>
+        <details class="faq group border-b border-line px-0 py-5 lg:px-10" open>
+          <summary class="flex items-start gap-4">
+            <span class="faq-icon mt-0.5 shrink-0" aria-hidden="true"></span>
+            <span class="font-sans text-base font-medium leading-7 text-navy">Is the campus international-student friendly?</span>
           </summary>
-          <p class="faq-answer mt-3 max-w-xl text-sm leading-relaxed text-mute">
-            Absolutely. Book a guided tour online, join Open Campus Day, or schedule a virtual meeting with an admissions counselor.
+          <p class="faq-answer mt-3 pl-8 font-sans text-base font-normal leading-[22.4px] text-[#555555]">
+            Yes. We provide guidance for admissions, accommodation, and student support services.
           </p>
         </details>
-        <details class="faq py-5">
-          <summary class="flex items-center justify-between gap-4">
-            <span class="text-[15px] font-semibold text-ink">How do I contact housing services?</span>
-            <span class="faq-icon shrink-0" aria-hidden="true"></span>
+        <details class="faq group border-b border-line px-0 py-5 lg:px-10" open>
+          <summary class="flex items-start gap-4">
+            <span class="faq-icon mt-0.5 shrink-0" aria-hidden="true"></span>
+            <span class="font-sans text-base font-medium leading-7 text-navy">Can I visit the campus before applying?</span>
           </summary>
-          <p class="faq-answer mt-3 max-w-xl text-sm leading-relaxed text-mute">
-            Email housing@kinfield.edu or call (555) 010-2911. First-year students are guaranteed a residence hall placement when they apply by May 1.
+          <p class="faq-answer mt-3 pl-8 font-sans text-base font-normal leading-[22.4px] text-[#555555]">
+            Absolutely. Join campus tours or book an admissions consultation session.
           </p>
         </details>
       </div>
@@ -477,185 +516,110 @@
   </section>
 
   <!-- ========== NEWSLETTER ========== -->
-  <section id="contact" class="bg-mist py-12 md:py-14">
-    <div class="reveal mx-auto flex max-w-site flex-col items-start justify-between gap-6 px-5 md:flex-row md:items-center md:px-8">
-      <p class="max-w-md text-[15px] font-medium leading-snug text-ink">
-        Get the latest updates by subscribing to our news and information emails.
-      </p>
-      <form class="flex w-full max-w-md gap-2" onsubmit="event.preventDefault();">
-        <label class="sr-only" for="email">Email address</label>
-        <input
-          id="email"
-          type="email"
-          required
-          placeholder="Enter your email"
-          class="w-full border border-line bg-white px-4 py-2.5 text-sm outline-none ring-maroon/30 placeholder:text-mute/70 focus:ring-2"
-        />
-        <button type="submit" class="shrink-0 rounded-md bg-maroon px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-maroon-dark">
-          Sign Up
-        </button>
-      </form>
+  <section id="contact" class="border-b border-line bg-mist">
+    <div class="reveal mx-auto grid max-w-site items-stretch gap-8 px-5 md:grid-cols-2 md:gap-0 md:px-8">
+      <div class="border-line md:border-r">
+        <div class="max-w-md py-12 md:py-14 md:pr-10 lg:pr-14">
+          <p class="mb-4 flex items-center gap-2 text-[14px] text-navy">
+            <svg width="4" height="4" viewBox="0 0 4 4" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="4" height="4" fill="#01293A"/>
+            </svg>
+            Newsletter Sign Up
+          </p>
+          <h2 class="m-0 font-display text-[28px] font-semibold leading-tight text-navy md:text-3xl">
+            Get the latest updates by subscribing to our news and information emails.
+          </h2>
+        </div>
+      </div>
+      <div class="flex items-center py-12 md:py-14 md:pl-10 lg:pl-14">
+        <form class="flex w-full max-w-md flex-col items-start gap-5" onsubmit="event.preventDefault();">
+          <label class="sr-only" for="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            required
+            placeholder="Enter your email"
+            class="w-full border-0 border-b border-line bg-transparent px-0 py-3 font-sans text-base text-navy outline-none ring-0 placeholder:text-[#555555]/70 focus:border-navy"
+          />
+          <button type="submit" class="rounded-[4px] bg-maroon px-6 py-3 font-sans text-base font-semibold text-white transition hover:bg-maroon-dark">
+            Subscribe
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
   <!-- ========== FOOTER ========== -->
   <footer class="bg-navy text-white">
-    <div class="mx-auto grid max-w-site gap-10 px-5 py-16 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
-      <div>
-        <h3 class="text-sm font-semibold tracking-wide">General</h3>
-        <ul class="mt-4 space-y-2.5 text-sm text-white/70">
-          <li><a href="#about" class="transition hover:text-white">About Kinfield</a></li>
-          <li><a href="#students" class="transition hover:text-white">Campus Life</a></li>
-          <li><a href="#events" class="transition hover:text-white">News &amp; Events</a></li>
-          <li><a href="#" class="transition hover:text-white">Careers</a></li>
-        </ul>
+    <div class="mx-auto grid w-full max-w-site grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Col 1: Brand + contact -->
+      <div class="flex flex-col justify-between border-[#FFFFFF14] lg:border-r">
+        <div class="p-8 md:p-10 lg:px-8 lg:py-12">
+          <a href="#" class="inline-block" aria-label="Kinfield University">
+            <img src="assets/images/logo.svg" alt="Kinfield" width="120" height="32" class="h-8 w-[120px]" />
+          </a>
+          <p class="mt-4 text-base leading-[22.4px] text-[#D6D6D6]">— Learn with purpose. Grow with people.</p>
+    
+    
+        </div>
+        <div class="border-t border-[#FFFFFF14] flex flex-col gap-12 p-8 md:p-10 lg:px-8 lg:py-12">
+          <p class="text-[18px] leading-[22.4px] text-white/80">
+            240 University Avenue, Suite 300, Global<br />
+            Education District Center 10010
+          </p>
+          <p class="text-base leading-[22.4px] text-white/80">
+            <a href="tel:+15550182048" class="transition hover:text-white">+1 (555) 018-2048</a>
+            <span class="mx-2"> </span>
+            <a href="mailto:hello@kinfield.edu" class="transition hover:text-white">hello@kinfield.edu</a>
+          </p>
+        </div>
       </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wide">Programs</h3>
-        <ul class="mt-4 space-y-2.5 text-sm text-white/70">
-          <li><a href="#programs" class="transition hover:text-white">Communications</a></li>
-          <li><a href="#programs" class="transition hover:text-white">Business</a></li>
-          <li><a href="#programs" class="transition hover:text-white">Creative Arts</a></li>
-          <li><a href="#programs" class="transition hover:text-white">Design</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wide">Admissions</h3>
-        <ul class="mt-4 space-y-2.5 text-sm text-white/70">
-          <li><a href="#admissions" class="transition hover:text-white">How to Apply</a></li>
-          <li><a href="#admissions" class="transition hover:text-white">Tuition &amp; Aid</a></li>
-          <li><a href="#admissions" class="transition hover:text-white">Visit Campus</a></li>
-          <li><a href="#admissions" class="transition hover:text-white">Transfer</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-sm font-semibold tracking-wide">Resources</h3>
-        <ul class="mt-4 space-y-2.5 text-sm text-white/70">
-          <li><a href="#" class="transition hover:text-white">Library</a></li>
-          <li><a href="#" class="transition hover:text-white">Student Portal</a></li>
-          <li><a href="#" class="transition hover:text-white">Alumni Network</a></li>
-          <li><a href="#" class="transition hover:text-white">Support</a></li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="border-t border-white/10">
-      <div class="mx-auto flex max-w-site flex-col items-start justify-between gap-4 px-5 py-6 text-sm text-white/60 md:flex-row md:items-center md:px-8">
-        <p>© 2026 Kinfield University · 1200 University Ave, Kinfield, NY 10001</p>
-        <div class="flex items-center gap-3">
-          <a href="#" aria-label="Facebook" class="rounded-full border border-white/20 p-2 transition hover:border-white/50 hover:text-white">
-            <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M14 8.5V6.75c0-.69.56-1.25 1.25-1.25H17V3h-1.75A3.75 3.75 0 0 0 11.5 6.75V8.5H9.5V11h2v10h2.5V11H16l.5-2.5H14Z"/></svg>
-          </a>
-          <a href="#" aria-label="Instagram" class="rounded-full border border-white/20 p-2 transition hover:border-white/50 hover:text-white">
-            <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2Zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2ZM17.7 6.9a1.12 1.12 0 1 1-2.24 0 1.12 1.12 0 0 1 2.24 0ZM21 7.35c-.05-1.08-.3-2.04-.99-2.73-.69-.69-1.65-.94-2.73-.99C16.14 3.5 15.8 3.5 12 3.5s-4.14 0-5.28.13c-1.08.05-2.04.3-2.73.99-.69.69-.94 1.65-.99 2.73C3.5 8.49 3.5 8.83 3.5 12s0 3.51.13 4.65c.05 1.08.3 2.04.99 2.73.69.69 1.65.94 2.73.99 1.14.13 1.48.13 5.28.13s4.14 0 5.28-.13c1.08-.05 2.04-.3 2.73-.99.69-.69.94-1.65.99-2.73.13-1.14.13-1.48.13-4.65s0-3.51-.13-4.65ZM19.4 17.2a3.3 3.3 0 0 1-1.86 1.86c-.5.2-1.34.4-3.54.4s-3.04-.2-3.54-.4a3.3 3.3 0 0 1-1.86-1.86c-.2-.5-.4-1.34-.4-3.54s.2-3.04.4-3.54a3.3 3.3 0 0 1 1.86-1.86c.5-.2 1.34-.4 3.54-.4s3.04.2 3.54.4a3.3 3.3 0 0 1 1.86 1.86c.2.5.4 1.34.4 3.54s-.2 3.04-.4 3.54Z"/></svg>
-          </a>
-          <a href="#" aria-label="LinkedIn" class="rounded-full border border-white/20 p-2 transition hover:border-white/50 hover:text-white">
-            <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.94 8.5H4.1V20h2.84V8.5ZM5.52 7.3a1.65 1.65 0 1 0 0-3.3 1.65 1.65 0 0 0 0 3.3ZM20 20h-2.84v-5.6c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95V20H10.3V8.5h2.73v1.57h.04c.38-.72 1.31-1.48 2.7-1.48 2.89 0 3.42 1.9 3.42 4.37V20Z"/></svg>
-          </a>
-          <a href="#" aria-label="X" class="rounded-full border border-white/20 p-2 transition hover:border-white/50 hover:text-white">
-            <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.6 3H20.4l-6.6 7.55L21.5 21h-5.4l-4.23-5.53L6.9 21H4.1l7.06-8.07L2.7 3h5.54l3.82 5.05L17.6 3Zm-1.9 16.2h1.5L8.4 4.7H6.8l8.9 14.5Z"/></svg>
-          </a>
+      <!-- Col 2: Quick Links + References -->
+      <div class="border-t border-[#FFFFFF14] md:border-t-0 md:border-l lg:border-l-0 lg:border-r">
+        <div class="grid grid-cols-2 gap-x-16 p-12 md:gap-x-24 md:p-12 lg:px-12 lg:py-12">
+  
+          <div>
+            <h3 class="text-base font-semibold text-white">Quick Links</h3>
+            <ul class="mt-6 space-y-4 text-base font-normal text-white/80">
+              <li><a href="#" class="font-normal transition hover:text-white">Home</a></li>
+              <li><a href="#about" class="font-normal transition hover:text-white">About</a></li>
+              <li><a href="#programs" class="font-normal transition hover:text-white">Program</a></li>
+              <li><a href="#contact" class="font-normal transition hover:text-white">Contact</a></li>
+     
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-white">References</h3>
+            <ul class="mt-6 space-y-4 text-base font-normal text-white/80">
+              <li><a href="#" class="transition hover:text-white">Licenses</a></li>
+              <li><a href="#" class="transition hover:text-white">Style Guide</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3: Social + copyright -->
+      <div class="flex flex-col justify-between border-t border-[#FFFFFF14] md:col-span-2 md:border-t lg:col-span-1 lg:border-t-0">
+        <div class="p-12">
+          <h3 class="text-base font-semibold">Social Media</h3>
+          <div class="mt-6 flex flex-wrap items-center gap-4 text-base text-white/80">
+            <a href="#" class="transition hover:text-white">Instagram</a>
+            <div class="h-5 border-l border-[#FFFFFF14]"></div>
+            <a href="#" class="transition hover:text-white">Linkedin</a>
+            <div class="h-5 border-l border-[#FFFFFF14]"></div>
+            <a href="#" class="transition hover:text-white">YouTube</a>
+          </div>
+        </div>
+        <div class="border-t border-[#FFFFFF14] p-12">
+          <p class="text-base leading-[22.4px] text-[#D6D6D6]">
+            © Copyright 2026 Kinfield. Powered by<br /> Webflow
+          </p>
         </div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Sticky nav solid background on scroll
-    const siteNav = document.getElementById('site-nav');
-    const onScrollNav = () => {
-      siteNav?.classList.toggle('is-scrolled', window.scrollY > 24);
-    };
-    onScrollNav();
-    window.addEventListener('scroll', onScrollNav, { passive: true });
-
-    // Mobile nav
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    menuBtn?.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
-    });
-    mobileNav?.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => mobileNav.classList.remove('open'));
-    });
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    reveals.forEach((el) => io.observe(el));
-
-    // Testimonials
-    const quotes = [
-      {
-        text: '“Kinfield pushed me to think bigger—then gave me the mentors, labs, and peer community to turn that ambition into work I’m proud of.”',
-        name: 'Angela Barker',
-        meta: 'Alumni 2020',
-        avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80',
-      },
-      {
-        text: '“The clinical placements and research labs made every semester feel connected to the world I wanted to work in after graduation.”',
-        name: 'Marcus Chen',
-        meta: 'Alumni 2021',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80',
-      },
-      {
-        text: '“I found a creative community here that challenged my craft and opened doors I did not know existed.”',
-        name: 'Sofia Alvarez',
-        meta: 'Alumni 2019',
-        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80',
-      },
-    ];
-
-    let quoteIndex = 0;
-    const quoteText = document.getElementById('quote-text');
-    const quoteName = document.getElementById('quote-name');
-    const quoteMeta = document.getElementById('quote-meta');
-    const quoteAvatar = document.getElementById('quote-avatar');
-
-    function renderQuote(i) {
-      const q = quotes[i];
-      quoteText.style.opacity = '0';
-      setTimeout(() => {
-        quoteText.textContent = q.text;
-        quoteName.textContent = q.name;
-        quoteMeta.textContent = q.meta;
-        quoteAvatar.src = q.avatar;
-        quoteAvatar.alt = q.name;
-        quoteText.style.opacity = '1';
-      }, 180);
-    }
-
-    quoteText.style.transition = 'opacity 0.2s ease';
-
-    document.getElementById('quote-prev')?.addEventListener('click', () => {
-      quoteIndex = (quoteIndex - 1 + quotes.length) % quotes.length;
-      renderQuote(quoteIndex);
-    });
-    document.getElementById('quote-next')?.addEventListener('click', () => {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      renderQuote(quoteIndex);
-    });
-
-    // One FAQ open at a time (optional polish)
-    document.querySelectorAll('details.faq').forEach((detail) => {
-      detail.addEventListener('toggle', () => {
-        if (detail.open) {
-          document.querySelectorAll('details.faq').forEach((other) => {
-            if (other !== detail) other.open = false;
-          });
-        }
-      });
-    });
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
