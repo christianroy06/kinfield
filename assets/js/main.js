@@ -162,7 +162,7 @@ if (eventsList) {
     .map(
       (event) => `
     <li class="pt-6 md:pt-8 lg:pt-9 last:pb-6 last:md:pb-8 last:lg:pb-9">
-      <div class="grid grid-cols-1 items-stretch rounded-[8px] bg-[#F8FBFC] md:grid-cols-2 lg:grid-cols-[minmax(0,243px)_minmax(0,336px)_minmax(0,335px)_379px] lg:p-7 xl:grid-cols-[243px_336px_335px_379px]">
+      <div class="grid grid-cols-1 items-stretch overflow-hidden rounded-[8px] bg-[#F8FBFC] md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)_minmax(0,1.35fr)_minmax(0,1.5fr)] lg:py-7 lg:pl-7 xl:grid-cols-[243px_336px_335px_minmax(0,1fr)]">
           <div class="flex flex-col gap-8 border-line px-5 py-5 md:gap-10 md:px-6 md:py-6 lg:justify-between lg:gap-0 lg:border-r">
             <p class="m-0 font-sans text-[24px] font-semibold leading-none tracking-normal text-navy md:text-[28px]">${escapeHtml(event.index)}</p>
             <div>
@@ -190,23 +190,23 @@ if (eventsList) {
                 alt="${escapeHtml(event.speakerName)}"
                 width="48"
                 height="48"
-                class="h-12 w-12 rounded-[8px] object-cover"
+                class="h-12 w-12 shrink-0 rounded-[8px] object-cover"
               />
-              <div>
+              <div class="min-w-0">
                 <p class="m-0 font-sans text-[18px] font-medium leading-7 tracking-normal text-navy md:text-[20px]">${escapeHtml(event.speakerName)}</p>
                 <p class="m-0 font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">${escapeHtml(event.speakerRole)}</p>
               </div>
             </div>
           </div>
 
-          <div class="flex w-full min-h-0 min-w-0 self-stretch max-lg:px-5 max-lg:pb-5 md:max-lg:px-6 md:max-lg:pb-6 lg:w-[379px] lg:-my-7 lg:-mr-7">
+          <div class="flex w-full min-h-0 min-w-0 self-stretch max-lg:px-5 max-lg:pb-5 md:max-lg:px-6 md:max-lg:pb-6 lg:-my-7">
             <img
               src="${escapeHtml(event.image)}"
               alt="${escapeHtml(event.title)}"
               width="379"
               height="300"
               loading="lazy"
-              class="aspect-[379/300] h-auto w-full rounded-[8px] object-cover object-center max-lg:max-h-[220px] lg:aspect-auto lg:h-full lg:min-h-full lg:w-[379px]"
+              class="aspect-[379/300] h-auto w-full rounded-[8px] object-cover object-center max-lg:max-h-[220px] lg:aspect-auto lg:h-full lg:min-h-full"
             />
           </div>
         </div>
