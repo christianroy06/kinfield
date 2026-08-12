@@ -86,7 +86,7 @@ if (quoteTrack && typeof Swiper !== 'undefined') {
             alt="${escapeHtml(q.name)}"
             width="120"
             height="120"
-            class="h-[120px] w-[120px] shrink-0 rounded-[8px] object-cover"
+            class="h-20 w-20 shrink-0 rounded-[8px] object-cover sm:h-[120px] sm:w-[120px]"
             loading="${i === 0 ? 'eager' : 'lazy'}"
           />
           <div class="min-w-0 pt-0.5">
@@ -102,20 +102,16 @@ if (quoteTrack && typeof Swiper !== 'undefined') {
   const quoteSwiper = new Swiper('#quote-swiper', {
     slidesPerView: 1,
     spaceBetween: 0,
-    speed: 700,
+    speed: 650,
     loop: true,
     grabCursor: true,
     autoHeight: true,
-    effect: 'creative',
-    creativeEffect: {
-      prev: {
-        translate: ['-24%', 0, -1],
-        opacity: 0,
-      },
-      next: {
-        translate: ['24%', 0, 0],
-        opacity: 0,
-      },
+    watchOverflow: true,
+    observer: true,
+    observeParents: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
     },
     navigation: {
       prevEl: '#quote-prev',
