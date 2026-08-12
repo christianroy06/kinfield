@@ -258,4 +258,19 @@ details.faq[open] .faq-answer {
 
 .campus-mute-btn {
   z-index: 2;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Testimonials slider */
+.quote-slider.swiper {
+  overflow: hidden;
+}
+
+.quote-slider .swiper-slide {
+  height: auto;
+  box-sizing: border-box;
+}
+
+.quote-slider .quote-slide {
+  backface-visibility: hidden;
+}
+/*# sourceMappingURL=style.css.map */

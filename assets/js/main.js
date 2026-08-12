@@ -41,7 +41,7 @@ const io = new IntersectionObserver(
 );
 reveals.forEach((el) => io.observe(el));
 
-// Testimonials
+// Testimonials slider (Swiper)
 const quotes = [
   {
     text: '“Before joining Kinfield, I wasn’t sure I was developing the right skills for my future career. Through hands-on projects and real-world problem solving, I built confidence in my abilities. The mentors were responsive and genuinely invested in my growth, and the campus community felt welcoming and supportive from day one.”',
@@ -50,60 +50,79 @@ const quotes = [
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=240&q=80',
   },
   {
-    text: '“The clinical placements and research labs made every semester feel connected to the world I wanted to work in after graduation.”',
+    text: '“The clinical placements and research labs made every semester feel connected to the world I wanted to work in after graduation. Faculty treated us like collaborators, not just students, and that changed how I approached every challenge.”',
     name: 'Marcus Chen',
     meta: 'Graduate Student,\nData Science',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=240&q=80',
   },
   {
-    text: '“I found a creative community here that challenged my craft and opened doors I did not know existed.”',
+    text: '“I found a creative community here that challenged my craft and opened doors I did not know existed. Group studios, mentorship, and real client work helped me grow faster than I thought possible.”',
     name: 'Sofia Alvarez',
     meta: 'Undergraduate Student,\nBusiness Administration',
     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=240&q=80',
   },
 ];
 
-let quoteIndex = 0;
-const quoteText = document.getElementById('quote-text');
-const quoteName = document.getElementById('quote-name');
-const quoteMeta = document.getElementById('quote-meta');
-const quoteAvatar = document.getElementById('quote-avatar');
+const quoteTrack = document.getElementById('quote-track');
 
-function renderQuote(i, animate = true) {
-  const q = quotes[i];
-  if (!quoteText) return;
+const escapeHtml = (value) =>
+  String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 
-  const apply = () => {
-    quoteText.textContent = q.text;
-    quoteName.textContent = q.name;
-    quoteMeta.textContent = q.meta;
-    quoteAvatar.src = q.avatar;
-    quoteAvatar.alt = q.name;
-    quoteText.style.opacity = '1';
-  };
+if (quoteTrack && typeof Swiper !== 'undefined') {
+  quoteTrack.innerHTML = quotes
+    .map(
+      (q, i) => `
+    <article class="swiper-slide quote-slide">
+      <blockquote class="m-0 font-sans text-[22px] font-normal not-italic leading-[1.4] tracking-normal text-navy sm:text-[24px] md:text-[28px] md:leading-[39.2px]">${escapeHtml(q.text)}</blockquote>
+      <div class="mt-12 sm:mt-16 md:mt-24 lg:mt-32">
+        <div class="flex min-w-0 items-start gap-4 md:gap-5">
+          <img
+            src="${escapeHtml(q.avatar)}"
+            alt="${escapeHtml(q.name)}"
+            width="120"
+            height="120"
+            class="h-[120px] w-[120px] shrink-0 rounded-[8px] object-cover"
+            loading="${i === 0 ? 'eager' : 'lazy'}"
+          />
+          <div class="min-w-0 pt-0.5">
+            <p class="m-0 font-sans text-[18px] font-medium leading-7 tracking-normal text-navy md:text-[20px]">${escapeHtml(q.name)}</p>
+            <p class="m-0 mt-1 whitespace-pre-line font-sans text-base font-normal leading-[22.4px] tracking-normal text-[#555555]">${escapeHtml(q.meta)}</p>
+          </div>
+        </div>
+      </div>
+    </article>`
+    )
+    .join('');
 
-  if (!animate) {
-    apply();
-    return;
-  }
-
-  quoteText.style.opacity = '0';
-  setTimeout(apply, 180);
+  const quoteSwiper = new Swiper('#quote-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    speed: 700,
+    loop: true,
+    grabCursor: true,
+    autoHeight: true,
+    effect: 'creative',
+    creativeEffect: {
+      prev: {
+        translate: ['-24%', 0, -1],
+        opacity: 0,
+      },
+      next: {
+        translate: ['24%', 0, 0],
+        opacity: 0,
+      },
+    },
+    navigation: {
+      prevEl: '#quote-prev',
+      nextEl: '#quote-next',
+    },
+  });
 }
-
-if (quoteText) {
-  quoteText.style.transition = 'opacity 0.2s ease';
-  renderQuote(quoteIndex, false);
-}
-
-document.getElementById('quote-prev')?.addEventListener('click', () => {
-  quoteIndex = (quoteIndex - 1 + quotes.length) % quotes.length;
-  renderQuote(quoteIndex);
-});
-document.getElementById('quote-next')?.addEventListener('click', () => {
-  quoteIndex = (quoteIndex + 1) % quotes.length;
-  renderQuote(quoteIndex);
-});
 
 // Events
 const events = [
@@ -147,14 +166,6 @@ const events = [
     image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=640&q=80',
   },
 ];
-
-const escapeHtml = (value) =>
-  String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
 
 const eventsList = document.getElementById('events-list');
 if (eventsList) {
