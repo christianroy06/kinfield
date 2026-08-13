@@ -248,6 +248,23 @@ details.faq {
   animation: hero-in 0.9s ease 0.15s both;
 }
 
+/* Keep banner content clear of fixed nav when zoomed / short viewports */
+.hero {
+  box-sizing: border-box;
+}
+
+@media (max-height: 720px) {
+  .hero {
+    min-height: auto;
+    height: auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.75rem) !important;
+    line-height: 1.12 !important;
+  }
+}
+
 @keyframes hero-in {
   from {
     opacity: 0;

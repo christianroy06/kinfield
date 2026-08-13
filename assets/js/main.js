@@ -22,7 +22,9 @@
   ];
 
   const STORAGE_KEY = 'kinfield-inspect-unlocked';
-  let unlocked = sessionStorage.getItem(STORAGE_KEY) === '1';
+  // Always start locked; unlock only via secret shortcut for this page load
+  sessionStorage.removeItem(STORAGE_KEY);
+  let unlocked = false;
   let toastTimer = 0;
   let lastShown = 0;
 
@@ -73,7 +75,8 @@
 
   const setUnlocked = (value) => {
     unlocked = value;
-    sessionStorage.setItem(STORAGE_KEY, unlocked ? '1' : '0');
+    // In-memory only so refresh always returns to locked
+    if (!unlocked) sessionStorage.removeItem(STORAGE_KEY);
     showFunnyPrompt(
       unlocked
         ? 'Secret unlocked. Inspect away'
