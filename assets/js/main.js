@@ -31,7 +31,26 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   let lastShown = 0;
   let lastDevtoolsState = document.documentElement.classList.contains('inspect-blocked');
 
-  const showFunnyPrompt = (message) => {
+  // Replace with your Google Chat DM / space link
+  const GOOGLE_CHAT_URL = 'https://chat.google.com/app/chat/ww4sy8AAAAE';
+
+  const mountInspectShield = () => {
+    if (document.getElementById('inspect-lock-shield')) return;
+    const shield = document.createElement('div');
+    shield.id = 'inspect-lock-shield';
+    shield.innerHTML =
+      '<div class="inspect-lock-card">' +
+      '<p class="inspect-lock-title">Are you finding something? hahaha</p>' +
+      '<p class="inspect-lock-text">Close Inspect / DevTools to view this site.</p>' +
+      '<p class="inspect-lock-text">Need access? Contact for permission to inspect.</p>' +
+      '<div class="inspect-lock-actions">' +
+      `<a class="inspect-lock-btn inspect-lock-btn--chat" href="${GOOGLE_CHAT_URL}" target="_blank" rel="noopener noreferrer">Contact</a>` +
+      '</div>' +
+      '</div>';
+    document.documentElement.appendChild(shield);
+  };
+
+  const showFunnyPrompt = (message, { withContact = false } = {}) => {
     const now = Date.now();
     if (now - lastShown < 900) return;
     lastShown = now;
@@ -56,14 +75,26 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
         'text-align:center',
         'box-shadow:0 12px 32px rgba(1,41,58,.28)',
         'opacity:0',
-        'pointer-events:none',
+        'pointer-events:auto',
         'transition:opacity .25s ease, transform .25s ease',
       ].join(';');
       document.body.appendChild(toast);
     }
 
-    toast.textContent =
+    const line =
       message || funnyLines[Math.floor(Math.random() * funnyLines.length)];
+
+    if (withContact) {
+      toast.innerHTML =
+        `<div>${line}</div>` +
+        `<div style="margin-top:8px;font-weight:500;font-size:13px;opacity:.9">Contact for permission to inspect.</div>` +
+        `<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px">` +
+        `<a href="${GOOGLE_CHAT_URL}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;padding:8px 12px;border-radius:4px;background:#1a73e8;color:#fff;font-weight:700;font-size:13px;text-decoration:none">Contact</a>` +
+        `</div>`;
+    } else {
+      toast.textContent = line;
+    }
+
     requestAnimationFrame(() => {
       toast.style.opacity = '1';
       toast.style.transform = 'translateX(-50%) translateY(0)';
@@ -73,10 +104,11 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
     toastTimer = window.setTimeout(() => {
       toast.style.opacity = '0';
       toast.style.transform = 'translateX(-50%) translateY(12px)';
-    }, 2200);
+    }, withContact ? 5000 : 2200);
   };
 
   const setBlocked = (blocked) => {
+    mountInspectShield();
     document.documentElement.classList.toggle('inspect-blocked', blocked);
   };
 
@@ -131,7 +163,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
     setBlocked(open);
 
     if (open && !lastDevtoolsState) {
-      showFunnyPrompt('Inspect was already open. Close it to view the site hahaha');
+      showFunnyPrompt('Contact the developer for permission to inspect');
     }
     lastDevtoolsState = open;
   };
@@ -164,7 +196,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   document.addEventListener('contextmenu', (event) => {
     if (unlocked) return;
     event.preventDefault();
-    showFunnyPrompt();
+    showFunnyPrompt(null, { withContact: true });
   });
 
   document.addEventListener('keydown', (event) => {
@@ -181,7 +213,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
     if (isDevtoolsShortcut) {
       event.preventDefault();
       event.stopPropagation();
-      showFunnyPrompt();
+      showFunnyPrompt(null, { withContact: true });
       window.setTimeout(() => syncDevtoolsLock({ useDebugger: true }), 100);
     }
   });
@@ -189,7 +221,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   document.addEventListener('dragstart', (event) => {
     if (unlocked) return;
     event.preventDefault();
-    showFunnyPrompt();
+    showFunnyPrompt(null, { withContact: true });
   });
 
   window.addEventListener('resize', () => syncDevtoolsLock());

@@ -70,21 +70,67 @@
     html.inspect-blocked body {
       visibility: hidden !important;
     }
-    html.inspect-blocked::before {
-      content: "Are you finding something? hahaha\\A Close Inspect / DevTools to view this site.";
-      white-space: pre-line;
+    #inspect-lock-shield {
+      display: none;
       position: fixed;
       inset: 0;
       z-index: 2147483646;
-      display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
       box-sizing: border-box;
       background: rgba(1, 41, 58, 0.96);
       color: #fff;
-      font: 600 20px/1.45 Manrope, system-ui, sans-serif;
       text-align: center;
+      font-family: Manrope, system-ui, sans-serif;
+      visibility: visible !important;
+    }
+    html.inspect-blocked #inspect-lock-shield {
+      display: flex;
+    }
+    #inspect-lock-shield .inspect-lock-card {
+      max-width: 440px;
+    }
+    #inspect-lock-shield .inspect-lock-title {
+      margin: 0 0 10px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    #inspect-lock-shield .inspect-lock-text {
+      margin: 0 0 8px;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.45;
+      opacity: 0.9;
+    }
+    #inspect-lock-shield .inspect-lock-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+    #inspect-lock-shield .inspect-lock-btn {
+      display: inline-flex;
+      margin-top: 0;
+      padding: 12px 18px;
+      border-radius: 4px;
+      background: #fff;
+      color: #01293a;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    #inspect-lock-shield .inspect-lock-btn--chat {
+      background: #1a73e8;
+      color: #fff;
+    }
+    #inspect-lock-shield .inspect-lock-btn:hover {
+      background: #f5f6f8;
+    }
+    #inspect-lock-shield .inspect-lock-btn--chat:hover {
+      background: #1557b0;
     }
   </style>
 </head>
