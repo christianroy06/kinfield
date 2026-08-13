@@ -32,7 +32,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   let lastDevtoolsState = document.documentElement.classList.contains('inspect-blocked');
 
   // Replace with your Google Chat DM / space link
-  const GOOGLE_CHAT_URL = 'https://chat.google.com/app/chat/ww4sy8AAAAE';
+  const GOOGLE_CHAT_URL = 'https://chat.google.com/';
 
   const mountInspectShield = () => {
     if (document.getElementById('inspect-lock-shield')) return;
