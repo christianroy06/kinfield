@@ -29,7 +29,23 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   let unlocked = false;
   let toastTimer = 0;
   let lastShown = 0;
-  let lastDevtoolsState = document.documentElement.classList.contains('inspect-blocked');
+
+  const isMobileLike = () => {
+    if (window.__KINFIELD_IS_MOBILE_LIKE) return true;
+    const ua = navigator.userAgent || '';
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua) ||
+      (navigator.maxTouchPoints > 1 && Math.min(screen.width, screen.height) <= 1024) ||
+      window.matchMedia('(pointer: coarse) and (max-width: 1024px)').matches
+    );
+  };
+
+  // Never keep a false lock from mobile browser chrome
+  if (isMobileLike()) {
+    document.documentElement.classList.remove('inspect-blocked');
+  }
+
+  let lastDevtoolsState = !isMobileLike() && document.documentElement.classList.contains('inspect-blocked');
 
   // Replace with your Google Chat DM / space link
   const GOOGLE_CHAT_URL = 'https://chat.google.com/';
@@ -113,7 +129,8 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   };
 
   const detectBySize = () => {
-    const threshold = 100;
+    if (isMobileLike()) return false;
+    const threshold = 160;
     return (
       window.outerWidth - window.innerWidth > threshold ||
       window.outerHeight - window.innerHeight > threshold
@@ -121,6 +138,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   };
 
   const detectByConsole = () => {
+    if (isMobileLike()) return false;
     let opened = false;
     const probe = new Image();
     Object.defineProperty(probe, 'id', {
@@ -139,6 +157,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
   };
 
   const detectByDebugger = () => {
+    if (isMobileLike()) return false;
     const start = performance.now();
     // Pauses only while DevTools is open
     // eslint-disable-next-line no-debugger
@@ -146,10 +165,13 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
     return performance.now() - start > 80;
   };
 
-  const isDevtoolsOpen = () => detectBySize() || detectByConsole();
+  const isDevtoolsOpen = () => {
+    if (isMobileLike()) return false;
+    return detectBySize() || detectByConsole();
+  };
 
   const syncDevtoolsLock = ({ useDebugger = false } = {}) => {
-    if (unlocked) {
+    if (unlocked || isMobileLike()) {
       setBlocked(false);
       lastDevtoolsState = false;
       return;
@@ -163,7 +185,7 @@ const __nativeConsole = window.__KINFIELD_CONSOLE || {
     setBlocked(open);
 
     if (open && !lastDevtoolsState) {
-      showFunnyPrompt('Contact the developer for permission to inspect');
+      showFunnyPrompt('Contact for permission to inspect');
     }
     lastDevtoolsState = open;
   };

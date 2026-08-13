@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script>
-    /* Early inspect lock: if DevTools is already open on arrival, hide page before paint */
+    /* Early inspect lock: desktop only (mobile/tablet chrome causes false positives) */
     (function () {
       try {
         window.__KINFIELD_CONSOLE = {
@@ -56,7 +56,20 @@
         };
       } catch (e) {}
 
-      var threshold = 100;
+      var ua = navigator.userAgent || '';
+      var isMobileLike =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua) ||
+        (navigator.maxTouchPoints > 1 && Math.min(screen.width, screen.height) <= 1024) ||
+        window.matchMedia('(pointer: coarse) and (max-width: 1024px)').matches;
+
+      window.__KINFIELD_IS_MOBILE_LIKE = isMobileLike;
+
+      if (isMobileLike) {
+        document.documentElement.classList.remove('inspect-blocked');
+        return;
+      }
+
+      var threshold = 160;
       var alreadyOpen =
         window.outerWidth - window.innerWidth > threshold ||
         window.outerHeight - window.innerHeight > threshold;
