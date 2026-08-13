@@ -250,7 +250,7 @@ if (quoteTrack && typeof Swiper !== 'undefined') {
 // Events
 const events = [
   {
-    index: '02',
+    index: '01',
     day: 'Wed,',
     date: 'April 16 2035',
     time: '14:00–15:15 WIB',
@@ -263,7 +263,7 @@ const events = [
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=640&q=80',
   },
   {
-    index: '03',
+    index: '02',
     day: 'Mon,',
     date: 'April 28 2035',
     time: '10:00–12:00 WIB',
@@ -276,7 +276,7 @@ const events = [
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=640&q=80',
   },
   {
-    index: '04',
+    index: '03',
     day: 'Fri,',
     date: 'May 09 2035',
     time: '17:30–19:00 WIB',
