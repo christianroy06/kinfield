@@ -46,6 +46,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    /* Early inspect lock: if DevTools is already open on arrival, hide page before paint */
+    (function () {
+      try {
+        window.__KINFIELD_CONSOLE = {
+          log: console.log.bind(console),
+          clear: console.clear.bind(console),
+        };
+      } catch (e) {}
+
+      var threshold = 100;
+      var alreadyOpen =
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold;
+
+      if (alreadyOpen) {
+        document.documentElement.classList.add('inspect-blocked');
+      }
+    })();
+  </script>
+  <style>
+    html.inspect-blocked body {
+      visibility: hidden !important;
+    }
+    html.inspect-blocked::before {
+      content: "Are you finding something? hahaha\\A Close Inspect / DevTools to view this site.";
+      white-space: pre-line;
+      position: fixed;
+      inset: 0;
+      z-index: 2147483646;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+      background: rgba(1, 41, 58, 0.96);
+      color: #fff;
+      font: 600 20px/1.45 Manrope, system-ui, sans-serif;
+      text-align: center;
+    }
+  </style>
 </head>
 <body class="font-body antialiased">
 

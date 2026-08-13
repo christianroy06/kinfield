@@ -1,4 +1,8 @@
-// Silence console output (does not prevent viewing/copying client-side source)
+// Silence console output (keep native refs for DevTools detection)
+const __nativeConsole = window.__KINFIELD_CONSOLE || {
+  log: console.log.bind(console),
+  clear: console.clear.bind(console),
+};
 (() => {
   const noop = () => {};
   ['log', 'info', 'warn', 'error', 'debug', 'table', 'dir', 'trace', 'group', 'groupCollapsed', 'groupEnd'].forEach((method) => {
@@ -21,12 +25,11 @@
     'F12 won’t unlock the final boss, champ',
   ];
 
-  const STORAGE_KEY = 'kinfield-inspect-unlocked';
-  // Always start locked; unlock only via secret shortcut for this page load
-  sessionStorage.removeItem(STORAGE_KEY);
+  sessionStorage.removeItem('kinfield-inspect-unlocked');
   let unlocked = false;
   let toastTimer = 0;
   let lastShown = 0;
+  let lastDevtoolsState = document.documentElement.classList.contains('inspect-blocked');
 
   const showFunnyPrompt = (message) => {
     const now = Date.now();
@@ -43,7 +46,7 @@
         'left:50%',
         'bottom:28px',
         'transform:translateX(-50%) translateY(12px)',
-        'z-index:100001',
+        'z-index:2147483647',
         'max-width:min(92vw,420px)',
         'padding:14px 18px',
         'border-radius:8px',
@@ -73,10 +76,74 @@
     }, 2200);
   };
 
+  const setBlocked = (blocked) => {
+    document.documentElement.classList.toggle('inspect-blocked', blocked);
+  };
+
+  const detectBySize = () => {
+    const threshold = 100;
+    return (
+      window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold
+    );
+  };
+
+  const detectByConsole = () => {
+    let opened = false;
+    const probe = new Image();
+    Object.defineProperty(probe, 'id', {
+      get() {
+        opened = true;
+        return 'kinfield-probe';
+      },
+    });
+    try {
+      __nativeConsole.log(probe);
+      __nativeConsole.clear();
+    } catch (_) {
+      /* ignore */
+    }
+    return opened;
+  };
+
+  const detectByDebugger = () => {
+    const start = performance.now();
+    // Pauses only while DevTools is open
+    // eslint-disable-next-line no-debugger
+    debugger;
+    return performance.now() - start > 80;
+  };
+
+  const isDevtoolsOpen = () => detectBySize() || detectByConsole();
+
+  const syncDevtoolsLock = ({ useDebugger = false } = {}) => {
+    if (unlocked) {
+      setBlocked(false);
+      lastDevtoolsState = false;
+      return;
+    }
+
+    let open = isDevtoolsOpen();
+    if (!open && useDebugger) {
+      open = detectByDebugger();
+    }
+
+    setBlocked(open);
+
+    if (open && !lastDevtoolsState) {
+      showFunnyPrompt('Inspect was already open. Close it to view the site hahaha');
+    }
+    lastDevtoolsState = open;
+  };
+
   const setUnlocked = (value) => {
     unlocked = value;
-    // In-memory only so refresh always returns to locked
-    if (!unlocked) sessionStorage.removeItem(STORAGE_KEY);
+    if (unlocked) {
+      setBlocked(false);
+      lastDevtoolsState = false;
+    } else {
+      syncDevtoolsLock({ useDebugger: true });
+    }
     showFunnyPrompt(
       unlocked
         ? 'Secret unlocked. Inspect away'
@@ -84,7 +151,7 @@
     );
   };
 
-  // Secret shortcut: Ctrl + Alt + K (toggle inspect unlock)
+  // Secret shortcut: Ctrl + Alt + K
   document.addEventListener('keydown', (event) => {
     const key = event.key?.toLowerCase?.() || '';
     if ((event.ctrlKey || event.metaKey) && event.altKey && key === 'k') {
@@ -115,6 +182,7 @@
       event.preventDefault();
       event.stopPropagation();
       showFunnyPrompt();
+      window.setTimeout(() => syncDevtoolsLock({ useDebugger: true }), 100);
     }
   });
 
@@ -123,6 +191,24 @@
     event.preventDefault();
     showFunnyPrompt();
   });
+
+  window.addEventListener('resize', () => syncDevtoolsLock());
+  window.addEventListener('focus', () => syncDevtoolsLock({ useDebugger: true }));
+  document.addEventListener('visibilitychange', () => syncDevtoolsLock({ useDebugger: true }));
+
+  const boot = () => {
+    syncDevtoolsLock({ useDebugger: true });
+    window.setInterval(() => syncDevtoolsLock(), 700);
+    window.setInterval(() => {
+      if (!unlocked) syncDevtoolsLock({ useDebugger: true });
+    }, 2500);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();
 
 // Sticky nav solid background on scroll
