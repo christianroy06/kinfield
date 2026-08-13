@@ -11,7 +11,10 @@
 })();
 
 // Light inspect deterrents + funny prompts (bypassable; not real protection)
+// Resize preview uses an iframe so media queries / headings still work.
 (() => {
+  const isPreviewFrame = new URLSearchParams(window.location.search).has('preview');
+
   const funnyLines = [
     'Are you finding something? hahaha',
     'Looking for treasure in the DevTools? Nice try',
@@ -24,9 +27,9 @@
   let toastTimer = 0;
   let lastShown = 0;
 
-  const showFunnyPrompt = () => {
+  const showFunnyPrompt = (message) => {
     const now = Date.now();
-    if (now - lastShown < 1200) return;
+    if (now - lastShown < 900) return;
     lastShown = now;
 
     let toast = document.getElementById('inspect-funny-toast');
@@ -37,9 +40,9 @@
       toast.style.cssText = [
         'position:fixed',
         'left:50%',
-        'bottom:28px',
+        'bottom:84px',
         'transform:translateX(-50%) translateY(12px)',
-        'z-index:99999',
+        'z-index:100001',
         'max-width:min(92vw,420px)',
         'padding:14px 18px',
         'border-radius:8px',
@@ -55,7 +58,8 @@
       document.body.appendChild(toast);
     }
 
-    toast.textContent = funnyLines[Math.floor(Math.random() * funnyLines.length)];
+    toast.textContent =
+      message || funnyLines[Math.floor(Math.random() * funnyLines.length)];
     requestAnimationFrame(() => {
       toast.style.opacity = '1';
       toast.style.transform = 'translateX(-50%) translateY(0)';
@@ -68,13 +72,162 @@
     }, 2200);
   };
 
-  const blockEvent = (event) => {
+  // Undo any previous broken body-maxWidth preview styles
+  document.body.classList.remove('is-preview-resized');
+  document.body.style.maxWidth = '';
+  document.body.style.marginLeft = '';
+  document.body.style.marginRight = '';
+  document.body.style.boxShadow = '';
+  document.documentElement.style.background = '';
+
+  if (!isPreviewFrame) {
+    const sizes = [
+      { id: 'mobile', label: 'Mobile', width: 390 },
+      { id: 'tablet', label: 'Tablet', width: 768 },
+      { id: 'desktop', label: 'Desktop', width: null },
+    ];
+
+    let overlay = null;
+    let frame = null;
+
+    const syncToolbar = (id) => {
+      toolbar.querySelectorAll('[data-preview-size]').forEach((btn) => {
+        const on = btn.getAttribute('data-preview-size') === id;
+        btn.style.background = on ? '#7D0000' : 'transparent';
+        btn.style.color = on ? '#fff' : '#01293A';
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    };
+
+    const closePreview = () => {
+      if (overlay) {
+        overlay.remove();
+        overlay = null;
+        frame = null;
+      }
+      document.body.style.overflow = '';
+      syncToolbar('desktop');
+    };
+
+    const openPreview = (width, label) => {
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'resize-preview-overlay';
+        overlay.style.cssText = [
+          'position:fixed',
+          'inset:0',
+          'z-index:99990',
+          'display:flex',
+          'align-items:stretch',
+          'justify-content:center',
+          'padding:16px 16px 72px',
+          'box-sizing:border-box',
+          'background:rgba(1,41,58,.78)',
+          'backdrop-filter:blur(6px)',
+          '-webkit-backdrop-filter:blur(6px)',
+        ].join(';');
+
+        // Extra dim layers so the page behind feels more covered
+        const dimTop = document.createElement('div');
+        dimTop.setAttribute('aria-hidden', 'true');
+        dimTop.style.cssText = [
+          'position:absolute',
+          'inset:0',
+          'pointer-events:none',
+          'background:radial-gradient(ellipse at center, rgba(1,41,58,.15) 0%, rgba(1,41,58,.55) 70%, rgba(0,0,0,.72) 100%)',
+        ].join(';');
+        overlay.appendChild(dimTop);
+
+        frame = document.createElement('iframe');
+        frame.id = 'resize-preview-frame';
+        frame.title = 'Responsive preview';
+        frame.style.cssText = [
+          'position:relative',
+          'z-index:1',
+          'height:100%',
+          'max-width:100%',
+          'border:0',
+          'border-radius:12px',
+          'background:#fff',
+          'box-shadow:0 24px 60px rgba(0,0,0,.45)',
+        ].join(';');
+
+        overlay.appendChild(frame);
+        document.body.appendChild(overlay);
+      }
+
+      frame.style.width = `${width}px`;
+      const previewUrl = new URL(window.location.href);
+      previewUrl.searchParams.set('preview', '1');
+      frame.src = previewUrl.toString();
+      document.body.style.overflow = 'hidden';
+      showFunnyPrompt(`Previewing ${label}. Layout stays intact`);
+    };
+
+    const toolbar = document.createElement('div');
+    toolbar.id = 'resize-preview-toolbar';
+    toolbar.setAttribute('role', 'group');
+    toolbar.setAttribute('aria-label', 'Resize preview');
+    toolbar.style.cssText = [
+      'position:fixed',
+      'right:16px',
+      'bottom:16px',
+      'z-index:100000',
+      'display:flex',
+      'gap:6px',
+      'padding:6px',
+      'border-radius:10px',
+      'background:#fff',
+      'box-shadow:0 8px 24px rgba(1,41,58,.18)',
+      'border:1px solid #E6E8EB',
+    ].join(';');
+
+    sizes.forEach((size) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = size.label;
+      btn.setAttribute('data-preview-size', size.id);
+      btn.setAttribute('aria-pressed', size.id === 'desktop' ? 'true' : 'false');
+      btn.style.cssText = [
+        'border:0',
+        'border-radius:8px',
+        'padding:8px 12px',
+        'font:600 12px/1 Manrope,system-ui,sans-serif',
+        'cursor:pointer',
+        'background:transparent',
+        'color:#01293A',
+      ].join(';');
+      if (size.id === 'desktop') {
+        btn.style.background = '#7D0000';
+        btn.style.color = '#fff';
+      }
+      btn.addEventListener('click', () => {
+        if (!size.width) {
+          closePreview();
+          showFunnyPrompt('Back to desktop view');
+          return;
+        }
+        openPreview(size.width, size.label);
+        syncToolbar(size.id);
+      });
+      toolbar.appendChild(btn);
+    });
+
+    const mountToolbar = () => {
+      if (!document.body.contains(toolbar)) document.body.appendChild(toolbar);
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mountToolbar);
+    } else {
+      mountToolbar();
+    }
+  }
+
+  // Inspect always blocked (including inside preview iframe)
+  document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
     showFunnyPrompt();
-    return false;
-  };
-
-  document.addEventListener('contextmenu', blockEvent);
+  });
 
   document.addEventListener('keydown', (event) => {
     const key = event.key?.toLowerCase?.() || '';
@@ -89,11 +242,13 @@
       event.preventDefault();
       event.stopPropagation();
       showFunnyPrompt();
-      return false;
     }
   });
 
-  document.addEventListener('dragstart', blockEvent);
+  document.addEventListener('dragstart', (event) => {
+    event.preventDefault();
+    showFunnyPrompt();
+  });
 })();
 
 // Sticky nav solid background on scroll
