@@ -1,3 +1,101 @@
+// Silence console output (does not prevent viewing/copying client-side source)
+(() => {
+  const noop = () => {};
+  ['log', 'info', 'warn', 'error', 'debug', 'table', 'dir', 'trace', 'group', 'groupCollapsed', 'groupEnd'].forEach((method) => {
+    try {
+      console[method] = noop;
+    } catch (_) {
+      /* ignore */
+    }
+  });
+})();
+
+// Light inspect deterrents + funny prompts (bypassable; not real protection)
+(() => {
+  const funnyLines = [
+    'Are you finding something? hahaha',
+    'Looking for treasure in the DevTools? Nice try',
+    'Psst… the secrets are not in Inspect Element',
+    'Caught you peeking. Nothing to see here',
+    'Code’s shy today. Come back never',
+    'F12 won’t unlock the final boss, champ',
+  ];
+
+  let toastTimer = 0;
+  let lastShown = 0;
+
+  const showFunnyPrompt = () => {
+    const now = Date.now();
+    if (now - lastShown < 1200) return;
+    lastShown = now;
+
+    let toast = document.getElementById('inspect-funny-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'inspect-funny-toast';
+      toast.setAttribute('role', 'status');
+      toast.style.cssText = [
+        'position:fixed',
+        'left:50%',
+        'bottom:28px',
+        'transform:translateX(-50%) translateY(12px)',
+        'z-index:99999',
+        'max-width:min(92vw,420px)',
+        'padding:14px 18px',
+        'border-radius:8px',
+        'background:#01293A',
+        'color:#fff',
+        'font:600 15px/1.4 Manrope,system-ui,sans-serif',
+        'text-align:center',
+        'box-shadow:0 12px 32px rgba(1,41,58,.28)',
+        'opacity:0',
+        'pointer-events:none',
+        'transition:opacity .25s ease, transform .25s ease',
+      ].join(';');
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = funnyLines[Math.floor(Math.random() * funnyLines.length)];
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    });
+
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(12px)';
+    }, 2200);
+  };
+
+  const blockEvent = (event) => {
+    event.preventDefault();
+    showFunnyPrompt();
+    return false;
+  };
+
+  document.addEventListener('contextmenu', blockEvent);
+
+  document.addEventListener('keydown', (event) => {
+    const key = event.key?.toLowerCase?.() || '';
+    const ctrlOrMeta = event.ctrlKey || event.metaKey;
+    const isDevtoolsShortcut =
+      key === 'f12' ||
+      (ctrlOrMeta && event.shiftKey && ['i', 'j', 'c'].includes(key)) ||
+      (ctrlOrMeta && key === 'u') ||
+      (ctrlOrMeta && key === 's');
+
+    if (isDevtoolsShortcut) {
+      event.preventDefault();
+      event.stopPropagation();
+      showFunnyPrompt();
+      return false;
+    }
+  });
+
+  document.addEventListener('dragstart', blockEvent);
+})();
+
 // Sticky nav solid background on scroll
 const siteNav = document.getElementById('site-nav');
 const onScrollNav = () => {
